@@ -1,0 +1,38 @@
+.dialogs {
+    display: grid;
+    grid-template-rows: 60 px 1fr;
+    grid-template-columns: 2fr 10fr;
+    position:relative;
+    padding-bottom:50px;
+}
+
+.dialogsItems {
+    padding: 10px;
+    text-decoration: none;
+}
+
+
+.item {
+    color: white;
+    text-decoration: none;
+}
+
+.active {
+    color: green;
+    text-decoration: none;
+}
+
+.image {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+}
+
+.massage {
+    color: white;
+}
+
+.dialogs .sendMessage {
+    display: flex;
+    position:absolute;
+}
