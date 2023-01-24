@@ -50,11 +50,6 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-
-    }
-}
 
 export default connect(mapStateToProps, {
     follow,
