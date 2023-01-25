@@ -1,7 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import s from './Users.module.css'
-import axios from 'axios'
 import { usersAPI } from '../../api/api'
 
 let Users = (props) => {
@@ -29,26 +28,31 @@ let Users = (props) => {
                     </div>
                     <div>
                         {u.followed
-                            ? <button onClick={() => {
-                               usersAPI.getUnfollow(u.id)
+                            ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                                props.toggleFollowingProgress(true, u.id)
+                                usersAPI.getUnfollow(u.id)
                                     .then(response => {
                                         if (response.data.resultCode == 0) {
                                             props.unfollow(u.id)
                                         }
                                         props.unfollow(u.id)
+
+                                        props.toggleFollowingProgress(false, u.id)
                                     }
                                     )
                             }}>
                                 Unfollow
                             </button>
-                            : <button onClick={() => {
-                                usersAPI.getUnfollow(u.id)
+                            : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                                props.toggleFollowingProgress(true, u.id)
+                                usersAPI.getFollow(u.id)
                                     .then(response => {
                                         if (response.data.resultCode == 0) {
                                             props.follow(u.id)
                                         }
                                     })
                                 props.follow(u.id)
+                                props.toggleFollowingProgress(false, u.id)
                             }}>
                                 Follow
                             </button>
