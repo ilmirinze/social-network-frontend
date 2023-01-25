@@ -1,7 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import s from './Users.module.css'
-import { usersAPI } from '../../api/api'
 
 let Users = (props) => {
 

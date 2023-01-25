@@ -9,7 +9,6 @@ const ProfileInfo = (props) => {
   }
   return (
     <div>
-      <div><img src='https://i.pinimg.com/736x/67/fd/67/67fd67b9eb8c036f4067a72e8b567a98--fairytail-shrek.jpg' /></div>
       <div className={s.descriptionBlock}>
         <img src={props.profile.photos.large}></img>
         ava + description
