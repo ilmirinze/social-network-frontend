@@ -43,12 +43,12 @@ let mapStateToProps = (state) => {
 }
 
 
-let withNavigate = withAuthNavigate(UsersContainer)
+//let withNavigate = withAuthNavigate(UsersContainer)
 
 
 
 
 export default compose (
     connect(mapStateToProps, {follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers}),
-    withAuthNavigate
+    //withAuthNavigate
 )(UsersContainer)

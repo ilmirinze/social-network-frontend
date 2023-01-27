@@ -22,7 +22,7 @@ let Users = (props) => {
                 <span>
                     <div>
                         <NavLink to={'/profile/' + u.id}>
-                            <img src={u.photos.small != null ? u.photos.small : "https://oir.mobi/uploads/posts/2022-08/1661385261_40-oir-mobi-p-standartnii-fon-vatsap-instagram-56.png"} className={s.userPhoto} />
+                            <img src={u.userProfile.photo != null ? u.userProfile.photo : "https://oir.mobi/uploads/posts/2022-08/1661385261_40-oir-mobi-p-standartnii-fon-vatsap-instagram-56.png"} className={s.userPhoto} />
                         </NavLink>
                     </div>
                     <div>
@@ -43,8 +43,7 @@ let Users = (props) => {
                 </span>
                 <span>
                     <span>
-                        <div>{u.name}</div>
-                        <div>{u.status}</div>
+                        <div>{u.userProfile.fullName}</div>
                     </span>
                     <span>
                         <div>{'u.location.city'}</div>
