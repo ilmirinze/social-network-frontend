@@ -1,25 +1,23 @@
-import { profileAPI } from "../api/api"
+import { profileAPI, postAPI } from "../api/api"
 
 const ADD_POST = 'ADD-POST'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'
 const SET_STATUS = 'SET-STATUS'
+const SET_POSTS = 'SET-POSTS'
 
 let initialState = {
-    posts: [
-        { id: 0, message: "hi, how are you?", likesCount: "12" },
-        { id: 1, message: "it's my first post", likesCount: "13" },
-    ],
+    userId: 5,
+    posts: [],
     profile: null,
-    status: ""
+    status: "",
+    postsTotalCount: null
 }
 
 export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST: {
             let newPost = {
-                id: 3,
                 message: action.newPostText,
-                likesCount: 0
             };
             return {
                 ...state,
@@ -36,13 +34,17 @@ export const profileReducer = (state = initialState, action) => {
                 status: action.status
             }
         }
+        case SET_POSTS: {
+            return { ...state, posts: action.posts }
+        }
         default:
             return state;
     }
 
 
 }
-export const addPostActionCreator = (newPostText) => ({ type: ADD_POST, newPostText })
+export const setPosts = (posts) => ({ type: SET_POSTS, posts })
+export const addPostActionCreator = (userId, newPostText) => ({ type: ADD_POST, newPostText, userId })
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 export const setStatus = (status) => ({ type: SET_STATUS, status })
 export const getUserProfile = (userId) => (dispatch) => {
@@ -60,6 +62,27 @@ export const updateStatus = (status) => (dispatch) => {
     profileAPI.updateStatus(status).then(response => {
         if (response.data.resultCode === 0) {
             dispatch(setStatus(status))
+        }
+    })
+}
+
+export const getPosts = (userId, currentPage, pageSize) => {
+    return (dispatch) => {
+        //dispatch(toggleIsFetching(true))
+        postAPI.getPosts(userId, currentPage, pageSize)
+            .then(data => {
+                //dispatch(toggleIsFetching(false))
+                dispatch(setPosts(data.posts))
+               // dispatch(setTotalPostsCount(data.postsTotalCount))
+            })
+    }
+}
+
+export const addNewPost = (userId, text) => (dispatch) => {
+    postAPI.addPost(userId, text)
+    .then(response => {
+        if (response.data.resultCode === 0) {
+            dispatch(addPostActionCreator(userId, text))
         }
     })
 }

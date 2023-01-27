@@ -48,5 +48,16 @@ export const profileAPI = {
     },
     updateStatus(status) {
         return instance.put(`profile/status/`, {status: status})
+    },
+}
+
+export const postAPI = {
+    addPost(userId, text) {
+        return instance.post('profile/' + userId + '/post', {text})
+    },
+    getPosts(userId, currentPage = 1, pageSize = 10) {
+        return instance.get(`profile/${userId}/post?page=${currentPage}&count=${pageSize}`,)
+            .then(response => response.data)
     }
 }
+

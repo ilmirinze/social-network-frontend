@@ -9,7 +9,7 @@ const MyPosts = (props) => {
   let postsElements = props.posts.map(p => <Post massage={p.message} key={p.id} likesCount={p.likesCount} />)
 
   let onAddPost = (values) => {
-    props.addPost(values.newPostText);
+    props.addPost(props.userId, values.newPostText);
   }
 
   return (
