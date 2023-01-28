@@ -9,13 +9,13 @@ const Nafbar = () => {
       <div>
         <NavLink to='/profile' className={navData => navData.isActive ? s.active : s.item}>Profile</NavLink>
       </div>
-      <div>
+      {/* <div>
         <NavLink to='/dialogs' className={navData => navData.isActive ? s.active : s.item}>Messages</NavLink>
-      </div>
+      </div> */}
       <div>
         <NavLink to='/users' className={navData => navData.isActive ? s.active : s.item}>Users</NavLink>
       </div>
-      <div>
+      {/* <div>
         <NavLink to='1' className={navData => navData.isActive ? s.active : s.item}>News</NavLink>
       </div>
       <div>
@@ -26,8 +26,8 @@ const Nafbar = () => {
       </div>
       <div>
         <NavLink to='4' className={navData => navData.isActive ? s.active : s.item}>friends</NavLink>
-      </div>
-      <div className={s.allImages}>
+      </div> */}
+      {/* <div className={s.allImages}>
         <div>
           <NavLink to='5' className={navData => navData.isActive ? s.active : s.item}><img src='https://i.pinimg.com/736x/12/8b/22/128b2276ba476261c4992b2b7f54b818.jpg' /></NavLink>
         </div>
@@ -37,7 +37,7 @@ const Nafbar = () => {
         <div>
           <NavLink to='7' className={navData => navData.isActive ? s.active : s.item}><img src='https://i.pinimg.com/736x/12/8b/22/128b2276ba476261c4992b2b7f54b818.jpg' /></NavLink>
         </div>
-      </div>
+      </div> */}
     </nav>
   )
 }

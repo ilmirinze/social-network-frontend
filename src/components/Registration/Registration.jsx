@@ -5,7 +5,7 @@ import { required } from "../../utils/validators/validators";
 import { Input } from "../common/FormsControls/FormsControls";
 import { Navigate } from "react-router-dom";
 
-const LoginForm = (props) => {
+const RegistrationForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -25,7 +25,7 @@ const LoginForm = (props) => {
     )
 }
 
-const RegistrationReduxForm = reduxForm({form: 'login'})(LoginForm)
+const RegistrationReduxForm = reduxForm({form: 'registration'})(RegistrationForm)
 
 const Registration = (props) => {
     const onSubmit = (formData) => {

@@ -10,19 +10,18 @@ let initialState = {
     posts: [],
     profile: null,
     status: "",
-    postsTotalCount: null
+    postsTotalCount: null,
 }
 
 export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST: {
             let newPost = {
-                message: action.newPostText,
+                text: action.newPostText,
             };
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                newPostText: ''
             }
         }
         case SET_USER_PROFILE: {

@@ -21,6 +21,7 @@ class MyPostsContainer extends React.Component {
              newPostText ={this.props.newPostText}
              userId= {this.props.userId}
              addPost = {this.props.addNewPost}
+             photo={this.props.profile.photo}
 
         />
       </>
@@ -35,6 +36,7 @@ let mapStateToProps = (state) => {
     posts: state.profilePage.posts,
     newPostText: state.profilePage.newPostText,
     userId: state.profilePage.userId
+    
   }
 }
 

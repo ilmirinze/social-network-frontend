@@ -6,7 +6,7 @@ import Post from "./Post/Post";
 import { Textarea } from "../../common/FormsControls/FormsControls";
 
 const MyPosts = (props) => {
-  let postsElements = props.posts.map(p => <Post massage={p.message} key={p.id} likesCount={p.likesCount} />)
+  let postsElements = props.posts.map(p => <Post text={p.text} key={p.id} photo={p.photo}  />)
 
   let onAddPost = (values) => {
     props.addPost(props.userId, values.newPostText);
@@ -18,7 +18,7 @@ const MyPosts = (props) => {
         <h3>My posts</h3>
         <AddNewPostFormRedux onSubmit={onAddPost} />
         <div className={s.posts}>
-          {postsElements}
+          {postsElements }
         </div>
       </div>
     </div>

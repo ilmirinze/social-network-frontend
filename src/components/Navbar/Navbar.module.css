@@ -1,7 +1,7 @@
 
 .nav {
   grid-area: n;
-  background-color: black;
+  background-color:rgb(32, 32, 32);
   padding: 20px;
 }
 
@@ -11,7 +11,7 @@
 }
 
 .active {
-  color: green;
+  color: rgb(233, 233, 233);
   text-decoration: none;
 }
 

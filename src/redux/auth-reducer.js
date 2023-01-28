@@ -1,5 +1,5 @@
 import { stopSubmit } from "redux-form"
-import { authAPI } from "../api/api"
+import { authAPI, registrationAPI } from "../api/api"
 
 const SET_USER_DATA = 'SET-USER-DATA'
 
@@ -57,6 +57,15 @@ export const logout = () => (dispatch) => {
     })
 }
 
+
+export const registration = () => (dispatch) => {
+    registrationAPI.registration()
+    .then(response => {
+        if (response.data.resultCode === 0) {
+            dispatch()
+        }
+    })
+}
 
 
 export default authReducer

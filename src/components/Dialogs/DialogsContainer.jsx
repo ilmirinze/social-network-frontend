@@ -20,5 +20,5 @@ let mapDispatchToProps = (dispatch) => {
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  withAuthNavigate
+  //withAuthNavigate
 )(Dialogs)
