@@ -4,12 +4,13 @@ import { Field, reduxForm } from "redux-form";
 import { required } from "../../utils/validators/validators";
 import { Input } from "../common/FormsControls/FormsControls";
 import { Navigate } from "react-router-dom";
+import {registration} from "../../redux/auth-reducer";
 
 const RegistrationForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field validate= {[required]} placeholder={'username'} name={'userName'} component={Input}/>
+                <Field validate= {[required]} placeholder={'username'} name={'username'} component={Input}/>
             </div>
             <div>
                 <Field validate= {[required]} placeholder={'email'} name={'email'} component={Input}/>
@@ -29,7 +30,7 @@ const RegistrationReduxForm = reduxForm({form: 'registration'})(RegistrationForm
 
 const Registration = (props) => {
     const onSubmit = (formData) => {
-        props.registration(formData.userName, formData.email, formData.password)
+        props.registration(formData.username, formData.email, formData.password)
     }
 
     if (props.isAuth) {
@@ -48,4 +49,4 @@ const mapStateToProps = (state) => ({
 
 })
 
-export default connect(mapStateToProps, {})(Registration)
+export default connect(mapStateToProps, {registration})(Registration)

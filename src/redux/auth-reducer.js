@@ -5,15 +5,18 @@ const SET_USER_DATA = 'SET-USER-DATA'
 
 
 let initialState = {
-    userId: null,
-    email: null,
-    login: null,
+    userId: window.localStorage.getItem("userId"),
+    email: window.localStorage.getItem("email"),
+    username: window.localStorage.getItem("username"),
     isAuth: false
 }
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER_DATA:
+            window.localStorage.setItem("userId", action.payload.userId);
+            window.localStorage.setItem("email", action.payload.email);
+            window.localStorage.setItem("username", action.payload.username);
             return {
                 ...state,
                 ...action.payload,
@@ -29,9 +32,9 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({ type: SET_US
 export const getAuthUserData = () => (dispatch) => {
     authAPI.me()
     .then(response => {
-        if (response.data.resultCode === 0) {
-            let { id, email, login} = response.data.data
-            dispatch(setAuthUserData(id, email, login, true))
+        if (response.data.result) {
+            let { id, email, username} = response.data
+            dispatch(setAuthUserData(id, email, username, true))
         }
     })
 }
@@ -39,7 +42,7 @@ export const getAuthUserData = () => (dispatch) => {
 export const login = (email, password, rememberMe) => (dispatch) => {
     authAPI.login(email, password, rememberMe)
     .then(response => {
-        if (response.data.resultCode === 0) {
+        if (response.data.result) {
             dispatch(getAuthUserData())
         } else {
             let action = stopSubmit('login, {Email is wrong}')
@@ -58,10 +61,10 @@ export const logout = () => (dispatch) => {
 }
 
 
-export const registration = () => (dispatch) => {
-    registrationAPI.registration()
+export const registration = (username, email, password) => (dispatch) => {
+    registrationAPI.registration(username, email, password)
     .then(response => {
-        if (response.data.resultCode === 0) {
+        if (response.data.result) {
             dispatch()
         }
     })

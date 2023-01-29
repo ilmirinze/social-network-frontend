@@ -31,7 +31,7 @@ export const authAPI = {
         return instance.get(`auth/me`)
     },
     login(email, password, rememberMe = false) {
-        return instance.post(`auth/login`, {email, password, rememberMe})
+        return instance.post(`auth/sign_in`, {email, password, rememberMe})
     },
     logout() {
         return instance.delete(`auth/login`)
@@ -39,8 +39,8 @@ export const authAPI = {
 }
 
 export const registrationAPI = {
-    registration(email, userName ,password) {
-        return instance.post(`registration`,{email, userName ,password} )
+    registration(username, email ,password) {
+        return instance.post(`auth/sign_up`,{email, username, password} )
     }
 }
  

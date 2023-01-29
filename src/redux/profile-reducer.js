@@ -6,7 +6,6 @@ const SET_STATUS = 'SET-STATUS'
 const SET_POSTS = 'SET-POSTS'
 
 let initialState = {
-    userId: 5,
     posts: [],
     profile: null,
     status: "",

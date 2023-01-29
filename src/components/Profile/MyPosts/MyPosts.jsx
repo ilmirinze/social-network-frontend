@@ -6,7 +6,7 @@ import Post from "./Post/Post";
 import { Textarea } from "../../common/FormsControls/FormsControls";
 
 const MyPosts = (props) => {
-  let postsElements = props.posts.map(p => <Post text={p.text} key={p.id} photo={p.photo}  />)
+  let postsElements = props.posts.map(p => <Post text={p.text} key={p.id}/>)
 
   let onAddPost = (values) => {
     props.addPost(props.userId, values.newPostText);

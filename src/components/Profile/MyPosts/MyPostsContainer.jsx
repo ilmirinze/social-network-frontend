@@ -6,10 +6,17 @@ import { compose } from 'redux'
 
 
 class MyPostsContainer extends React.Component {
+  is = true;
   componentDidMount() {
     this.props.getPosts(this.props.userId, this.props.currentPage, this.props.pageSize)
-    
   }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    debugger
+    if(this.is)
+    this.props.getPosts(this.props.userId, this.props.currentPage, this.props.pageSize)
+    this.is = false;
+  }
+
   // onPageChanged = (pageNumber) => {
   //   this.props.getUsers(pageNumber, this.props.pageSize)
   // }
@@ -21,7 +28,6 @@ class MyPostsContainer extends React.Component {
              newPostText ={this.props.newPostText}
              userId= {this.props.userId}
              addPost = {this.props.addNewPost}
-             photo={this.props.profile.photo}
 
         />
       </>
@@ -35,8 +41,6 @@ let mapStateToProps = (state) => {
   return {
     posts: state.profilePage.posts,
     newPostText: state.profilePage.newPostText,
-    userId: state.profilePage.userId
-    
   }
 }
 

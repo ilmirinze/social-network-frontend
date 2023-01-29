@@ -15,18 +15,21 @@ export function withRouter(Children) {
 }
 
 class ProfileContainer extends React.Component {
+  currentUserId;
+
   componentDidMount() {
-    let userId = this.props.match.params.userId
-    if(!userId) {
-      userId = 27621
+    this.currentUserId = this.props.match.params.userId
+    if(!this.currentUserId) {
+      this.currentUserId = this.props.userId
     }
-    this.props.getUserProfile(userId)
-    this.props.getStatus(userId)
+    debugger
+    this.props.getUserProfile(this.currentUserId)
+    this.props.getStatus(this.currentUserId)
   }
   
   render() {
     return (      
-      <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus} addNewPost= {this.props.addNewPost}/>
+      <Profile {...this.props} status={this.props.status} updateStatus={this.props.updateStatus} addNewPost= {this.props.addNewPost}/>
     )
   }
 }
@@ -37,7 +40,7 @@ class ProfileContainer extends React.Component {
 let mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
   status: state.profilePage.status,
-  userId: state.profilePage.userId
+  userId: state.auth.userId
 })
 
 export default compose(
