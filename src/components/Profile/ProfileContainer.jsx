@@ -22,7 +22,6 @@ class ProfileContainer extends React.Component {
     if(!this.currentUserId) {
       this.currentUserId = this.props.userId
     }
-    debugger
     this.props.getUserProfile(this.currentUserId)
     this.props.getStatus(this.currentUserId)
   }

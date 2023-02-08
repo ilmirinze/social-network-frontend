@@ -11,7 +11,6 @@ class MyPostsContainer extends React.Component {
     this.props.getPosts(this.props.userId, this.props.currentPage, this.props.pageSize)
   }
   componentDidUpdate(prevProps, prevState, snapshot) {
-    debugger
     if(this.is)
     this.props.getPosts(this.props.userId, this.props.currentPage, this.props.pageSize)
     this.is = false;

@@ -24,9 +24,11 @@ let Users = (props) => {
                         <NavLink to={'/profile/' + u.id}>
                             <img src={u.userProfile.photo != null ? u.userProfile.photo : "https://oir.mobi/uploads/posts/2022-08/1661385261_40-oir-mobi-p-standartnii-fon-vatsap-instagram-56.png"} className={s.userPhoto} />
                         </NavLink>
+                        
                     </div>
+                    <div>{u.userProfile.fullName}</div>
                     <div>
-                        {u.followed
+                        {/* {u.followed
                             ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
                                 props.unfollow(u.id)
                             }}>
@@ -37,18 +39,9 @@ let Users = (props) => {
                             }}>
                                 Follow
                             </button>
-                        }
+                        } */}
 
                     </div>
-                </span>
-                <span>
-                    <span>
-                        <div>{u.userProfile.fullName}</div>
-                    </span>
-                    <span>
-                        <div>{'u.location.city'}</div>
-                        <div>{'u.location.country'}</div>
-                    </span>
                 </span>
             </div>)
         }
