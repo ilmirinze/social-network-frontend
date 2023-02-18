@@ -24,7 +24,7 @@ body {
 }
 
 
-select {
+.react-select {
 	font: inherit;
 	letter-spacing: inherit;
 	word-spacing: inherit;
@@ -44,8 +44,8 @@ select {
 	background-color: rgb(236, 236, 236);
 	color: #2C3E50;
   }
-  
-  select:not([multiple]) {
+
+.react-select:not([multiple]) {
 	padding-right: 1.2em;
 	background-repeat: no-repeat;
 	background-position: calc(100% - 0.5em) ;
@@ -56,7 +56,7 @@ select {
 
   
   /* скроет иконку стрелки в IE */
-  select::-ms-expand {
+.react-select::-ms-expand {
 	clip-path: polygon(100% 0%, 0 0%, 50% 100%);
   }
 
@@ -74,7 +74,7 @@ select {
 	position: relative;
 }
 
-#msform fieldset {
+#msform .fieldset {
 	background: white;
 	border: 0 none;
 	border-radius: 3px;
@@ -97,7 +97,7 @@ select {
 
 
 /*Hide all except first fieldset*/
-#msform fieldset:not(:first-of-type) {
+#msform .fieldset:not(:first-of-type) {
 	display: none;
 }
 
@@ -111,7 +111,7 @@ select {
 	width: 100%;
 	box-sizing: border-box;
 	font-family: montserrat;
-	color: #ffffff;
+	color: black;
 	font-size: 13px;
 	background-color: rgb(236, 236, 236);
 }
@@ -139,6 +139,19 @@ select {
 #msform .action_button:focus {
 	
 	background-color: rgb(236, 236, 236);
+}
+
+.backnext {
+	display: block;
+	width: 100%;
+}
+
+.back {
+	font-weight: normal;
+	font-size: 15px;
+	color: #666;
+	margin-bottom: 20px;
+	text-decoration: none;
 }
 
 /*headings*/
@@ -207,8 +220,20 @@ select {
 
 /*marking active/completed steps green*/
 /*The number of the step and the connector before it = green*/
-#progressbar li.active:before,
-#progressbar li.active:after {
-	background: #27AE60;
-	color: white;
+#progressbar li.active:before,  #progressbar li.active:after{
+	background: orange;
+	color: black;
+}
+
+.text_button {
+	font-family: montserrat;
+	background: none!important;
+	border: none;
+	padding: 0!important;
+	font-weight: normal;
+	font-size: 15px;
+	color: #666;
+	margin-bottom: 20px;
+	text-decoration: none;
+	cursor: pointer;
 }

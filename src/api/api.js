@@ -39,8 +39,21 @@ export const authAPI = {
 }
 
 export const signUpAPI = {
-    signUp(username, email ,password) {
-        return instance.post(`auth/sign_up`,{email, username, password} )
+    signUp(userData) {
+        return instance.post(`auth/sign_up`,{
+            email: userData.email,
+            username: userData.username,
+            role: userData.role,
+            password: userData.password,
+            firstName: userData.firstName,
+            lastName: userData.lastName,
+            birthday: userData.birthday,
+            gender: userData.gender,
+            group: userData.group,
+            institution: userData.institution,
+            faculty: userData.faculty,
+            course: userData.course,
+        } )
     }
 }
  

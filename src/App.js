@@ -7,13 +7,13 @@ import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
-import SignUp from './components/Registration/SignUp';
+import SignUpContainer from "./components/Registration/SignUpContainer";
 
 
 const App = (props) => {
   return (
     <BrowserRouter>
-      {(!props.isAuth) ?
+      {(props.isAuth) ?
         <div className='app-wrapper'>
           <div className={'app-wrapper-content'}>
             <Navbar />
@@ -32,7 +32,7 @@ const App = (props) => {
         :
         <div>
           <Routes>
-            <Route path="/signUp" element={<SignUp />} />
+            <Route path="/signUp" element={<SignUpContainer />} />
             <Route path='/login' element={<Login />} />
           </Routes>
         </div>
