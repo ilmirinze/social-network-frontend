@@ -100,8 +100,8 @@ export const educationDetailsInfoAC = (institution, faculty, course, group) => (
     group
 })
 
-export const signUp = async (state) => (dispatch) => {
-    signUpAPI.signUp(state)
+export const signUp = () => (dispatch, getState) => {
+    signUpAPI.signUp(getState().signUp)
         .then(response => {
             if (response.data.result) {
                 dispatch()

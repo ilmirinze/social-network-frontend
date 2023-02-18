@@ -12,7 +12,6 @@ class SignUpContainer extends React.Component {
                 nextStep={this.props.nextStep}
                 previousStep={this.props.previousStep}
                 signUp={this.props.signUp}
-                userData={this.props.userData}
                 accountSetupInfo={this.props.accountSetupInfoAC}
                 personalDetailsInfo={this.props.personalDetailsInfoAC}
                 educationDetailsInfo={this.props.educationDetailsInfoAC}
@@ -23,8 +22,7 @@ class SignUpContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        currentStep: state.signUp.currentStep,
-        userData: state.signUp
+        currentStep: state.signUp.currentStep
     }
 }
 

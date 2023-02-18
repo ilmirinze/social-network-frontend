@@ -16,8 +16,7 @@ const SignUpComponent = (props) => {
             return <EducationDetailsComponent
                 previousStep={props.previousStep}
                 educationDetailsInfo={props.educationDetailsInfo}
-                signUp={props.signUp}
-                userData={props.userData}/>
+                signUp={props.signUp}/>
         }
         default: {
             return <AccountSetupComponent

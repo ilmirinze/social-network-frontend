@@ -19,10 +19,10 @@ const EducationDetailsForm = (props) => {
             <div className={s.fieldset}>
                 <h2 className={s.fs_title}>Create your account</h2>
                 <h3 className={s.fs_subtitle}>This is step 1</h3>
-                <Field name="institution" placeholder="educational institution" component={Input}/>
-                <Field name="faculty" placeholder="faculty" component={Input}/>
-                <Field name="course" placeholder="course" component={Input}/>
-                <Field  name="group" placeholder="group" component={Input}/>
+                <Field name={"institution"} placeholder={"educational institution"} component={Input}/>
+                <Field name={"faculty"} placeholder={"faculty"} component={Input}/>
+                <Field name={"course"} placeholder={"course"} component={Input}/>
+                <Field name={"group"} placeholder={"group"} component={Input}/>
                 <button type="button" className={s.text_button} onClick={props.previousStep}>back</button>
                 <button type="submit" className={classNames(s.next, s.action_button)}>Sign up</button>
                 <NavLink to='/login' className={s.signIn}>Sign in</NavLink>
@@ -36,7 +36,7 @@ const EducationDetailsReduxForm = reduxForm({form: 'signUp'})(EducationDetailsFo
 const EducationDetailsComponent = (props) => {
     const onSubmit = (formData) => {
         props.educationDetailsInfo(formData.institution, formData.faculty, formData.course, formData.group)
-        props.signUp(props.userData)
+        props.signUp()
     }
     return <EducationDetailsReduxForm onSubmit={onSubmit} previousStep={props.previousStep}/>
 }
