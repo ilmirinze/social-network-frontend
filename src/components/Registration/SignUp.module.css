@@ -14,6 +14,15 @@ body {
 	margin-left: 0%;
 }
 
+.signIn {
+	display: block;
+	font-weight: normal;
+	font-size: 15px;
+	color: #666;
+	margin-bottom: 20px;
+	text-decoration: none;
+}
+
 
 select {
 	font: inherit;
@@ -32,7 +41,6 @@ select {
 	box-sizing: border-box;
 	font-family: montserrat;
 	color: #ffffff;
-	font-size: 13px;
 	background-color: rgb(236, 236, 236);
 	color: #2C3E50;
   }
@@ -56,10 +64,7 @@ select {
     color: #2C3E50;
 }
 
-select * {
-	font-size: 120%;
-	width: 100%;
-}
+
 
 /*form styles*/
 #msform {

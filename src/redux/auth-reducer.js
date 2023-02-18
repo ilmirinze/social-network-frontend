@@ -9,7 +9,6 @@ let initialState = {
     email: window.localStorage.getItem("email"),
     username: window.localStorage.getItem("username"),
     isAuth: false
-    
 }
 
 const authReducer = (state = initialState, action) => {
@@ -62,14 +61,6 @@ export const logout = () => (dispatch) => {
 }
 
 
-export const registration = (username, email, password, isAuth) => (dispatch) => {
-    registrationAPI.registration(username, email, password, isAuth = true)
-    .then(response => {
-        if (response.data.result) {
-            dispatch(getAuthUserData())
-        }
-    })
-}
 
 
 export default authReducer

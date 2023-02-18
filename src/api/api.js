@@ -38,8 +38,8 @@ export const authAPI = {
     }
 }
 
-export const registrationAPI = {
-    registration(username, email ,password) {
+export const signUpAPI = {
+    signUp(username, email ,password) {
         return instance.post(`auth/sign_up`,{email, username, password} )
     }
 }
