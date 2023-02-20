@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import Navbar from './components/Navbar/Navbar';
+import Navbar from './components/navbar/navbar.component';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import DialogsContainer from './components/Dialogs/DialogsContainer';
-import UsersContainer from './components/Users/UsersContainer';
-import ProfileContainer from './components/Profile/ProfileContainer';
-import HeaderContainer from './components/Header/HeaderContainer';
-import Login from './components/Login/Login';
-import SignUpContainer from "./components/Registration/SignUpContainer";
+import DialogsContainer from './components/tabs-content/dialogs/dialogs.container';
+import UsersContainer from './components/tabs-content/users/users.container';
+import ProfileContainer from './components/tabs-content/profile/profile.ontainer';
+import HeaderContainer from './components/header/header.ontainer';
+import Login from './components/authentication/sign-in/sign-in.component';
+import SignUpContainer from "./components/authentication/sign-up/sign-up.container";
 
 
 const App = (props) => {
@@ -39,14 +39,14 @@ const App = (props) => {
       }
 
 
-      {/* {(!props.isAuth) ? null : <div><Navbar /> <HeaderContainer /></div>}
+      {/* {(!props.isAuth) ? null : <div><navbar /> <HeaderContainer /></div>}
       <div className='app-wrapper'>
         <div className={'app-wrapper-content'}>
           <Routes>
             <Route path='/dialogs' element={<DialogsContainer />} />
             <Route path='/dialogs/*' element={<DialogsContainer />} />
-            <Route path="/registration" element={<Registration />} />
-            <Route path='/login' element={<Login />} />
+            <Route path="/sign-up" element={<sign-up />} />
+            <Route path='/login' element={<sign-in />} />
             <Route path="/profile" element={<ProfileContainer />}>
               <Route path=":userId" element={<ProfileContainer />} />
             </Route>
