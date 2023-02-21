@@ -5,6 +5,7 @@ import classNames from "classnames";
 import s from '../sign-up.module.css'
 import {NavLink} from 'react-router-dom';
 import {Input} from "../../../common/form-controls/form-controls";
+import { required } from "../../../../utils/validators/validators";
 
 
 const EducationDetailsForm = (props) => {
@@ -19,10 +20,10 @@ const EducationDetailsForm = (props) => {
             <div className={s.fieldset}>
                 <h2 className={s.fs_title}>Create your account</h2>
                 <h3 className={s.fs_subtitle}>This is step 1</h3>
-                <Field name={"institution"} placeholder={"educational institution"} component={Input}/>
-                <Field name={"faculty"} placeholder={"faculty"} component={Input}/>
-                <Field name={"course"} placeholder={"course"} component={Input}/>
-                <Field name={"group"} placeholder={"group"} component={Input}/>
+                <Field name={"institution"} placeholder={"educational institution"} component={Input} validate={required}/>
+                <Field name={"faculty"} placeholder={"faculty"} component={Input} validate={required}/>
+                <Field name={"course"} placeholder={"course"} component={Input} validate={required}/>
+                <Field name={"group"} placeholder={"group"} component={Input} validate={required}/>
                 <button type="button" className={s.text_button} onClick={props.previousStep}>back</button>
                 <button type="submit" className={classNames(s.next, s.action_button)}>Sign up</button>
                 <NavLink to='/login' className={s.signIn}>Sign in</NavLink>

@@ -5,6 +5,8 @@ import classNames from "classnames";
 import s from '../sign-up.module.css'
 import {NavLink} from 'react-router-dom';
 import {Input, ReduxFormSelect} from "../../../common/form-controls/form-controls";
+import { required, validateName } from "../../../../utils/validators/validators";
+
 
 
 const PersonalDetailsForm = (props) => {
@@ -30,10 +32,10 @@ const PersonalDetailsForm = (props) => {
             <div className={s.fieldset}>
                 <h2 className={s.fs_title}>Create your account</h2>
                 <h3 className={s.fs_subtitle}>This is step 1</h3>
-                <Field placeholder={'firstName'} name={'firstName'} component={Input}/>
-                <Field placeholder={'lastName'} name={'lastName'} component={Input}/>
-                <Field name={'gender'} className={s.reactSelect} component={ReduxFormSelect} options={genderOptions}/>
-                <Field placeholder={'birthday'} name={'birthday'} component={Input} />
+                <Field placeholder={'firstName'} name={'firstName'} component={Input} validate={[required, validateName]}/>
+                <Field placeholder={'lastName'} name={'lastName'} component={Input} validate={[required, validateName]}/>
+                <Field name={'gender'} className={s.reactSelect} component={ReduxFormSelect} options={genderOptions} validate={required}/>
+                <Field placeholder={'birthday'} name={'birthday'} component={Input} validate={required} />
                 <button type="button" className={s.text_button} onClick={props.previousStep}>back</button>
                 <button type="submit" className={classNames(s.next, s.action_button)}>next</button>
                 <NavLink to='/login' className={s.signIn}>Sign in</NavLink>

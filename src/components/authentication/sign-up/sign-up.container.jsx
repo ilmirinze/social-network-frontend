@@ -4,7 +4,7 @@ import SignUpComponent from "./sign-up.component";
 import {nextStep, previousStep, signUp, accountSetupInfoAC, personalDetailsInfoAC, educationDetailsInfoAC} from "../../../redux/sign-up-reducer";
 
 class SignUpContainer extends React.Component {
-
+    
     render() {
         return <>
             <SignUpComponent
@@ -33,5 +33,5 @@ export default (
         accountSetupInfoAC,
         personalDetailsInfoAC,
         educationDetailsInfoAC,
-        signUp
+        signUp,
     }))(SignUpContainer)

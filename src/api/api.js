@@ -23,7 +23,8 @@ export const usersAPI = {
     },
     getProfile(userId) {
         return profileAPI.getProfile
-    }
+    },
+   
 }
 
 export const authAPI = {
@@ -31,7 +32,7 @@ export const authAPI = {
         return instance.get(`auth/me`)
     },
     login(email, password, rememberMe = false) {
-        return instance.post(`auth/sign_in`, {email, password, rememberMe})
+        return instance.post(`auth/sign_in`, { email, password, rememberMe })
     },
     logout() {
         return instance.delete(`auth/login`)
@@ -40,7 +41,7 @@ export const authAPI = {
 
 export const signUpAPI = {
     signUp(userData) {
-        return instance.post(`auth/sign_up`,{
+        return instance.post(`auth/sign_up`, {
             email: userData.email,
             username: userData.username,
             role: userData.role,
@@ -53,10 +54,14 @@ export const signUpAPI = {
             institution: userData.institution,
             faculty: userData.faculty,
             course: userData.course,
-        } )
+        })
+    },
+    isUsernameAvailable(username) {
+        return instance.get('sign_up/check', { params: { username }})
+        
     }
 }
- 
+
 
 export const profileAPI = {
     getProfile(userId) {
@@ -66,13 +71,13 @@ export const profileAPI = {
         return instance.get(`profile/status/` + userId)
     },
     updateStatus(status) {
-        return instance.put(`profile/status/`, {status: status})
+        return instance.put(`profile/status/`, { status: status })
     },
 }
 
 export const postAPI = {
     addPost(userId, text) {
-        return instance.post('profile/' + userId + '/post', {text})
+        return instance.post('profile/' + userId + '/post', { text })
     },
     getPosts(userId, currentPage = 1, pageSize = 10) {
         return instance.get(`profile/${userId}/post?page=${currentPage}&count=${pageSize}`,)

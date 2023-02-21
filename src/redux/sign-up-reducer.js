@@ -39,6 +39,7 @@ export const signUpReducer = (state = initialState, action) => {
             }
         }
         case ACCOUNT_SETUP_INFO: {
+            
             return {
                 ...state,
                 username: action.username,
@@ -108,3 +109,4 @@ export const signUp = () => (dispatch, getState) => {
             }
         })
 }
+
