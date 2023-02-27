@@ -15,20 +15,27 @@ export function withRouter(Children) {
 }
 
 class ProfileOntainer extends React.Component {
-  currentUserId;
+  refreshProfile() {
+    let userId = this.props.match.params.userId
+    if (!userId) {
+      userId = this.props.userId
+    }
+    this.props.getUserProfile(userId)
+    this.props.getStatus(userId)
+  }
 
   componentDidMount() {
-    this.currentUserId = this.props.match.params.userId
-    if(!this.currentUserId) {
-      this.currentUserId = this.props.userId
-    }
-    this.props.getUserProfile(this.currentUserId)
-    this.props.getStatus(this.currentUserId)
+    this.refreshProfile()
   }
-  
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.match.params.userId != prevProps.match.params.userId) {
+      this.refreshProfile()
+    }
+  }
+
   render() {
-    return (      
-      <ProfileComponent {...this.props} status={this.props.status} updateStatus={this.props.updateStatus} addNewPost= {this.props.addNewPost}/>
+    return (
+      <ProfileComponent {...this.props} status={this.props.status} updateStatus={this.props.updateStatus} addNewPost={this.props.addNewPost} />
     )
   }
 }

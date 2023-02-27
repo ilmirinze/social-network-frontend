@@ -5,6 +5,7 @@ const PREVIOUS_STEP = 'PREVIOUS-STEP'
 const ACCOUNT_SETUP_INFO = 'ACCOUNT-SETUP-INFO'
 const PERSONAL_DETAILS_INFO = 'PERSONAL-DETAILS-INFO'
 const EDUCATION_DETAILS_INFO = 'EDUCATION-DETAILS-INFO'
+const SAVE_PHOTO_SUCCESS = 'SAVE-PHOTO-SUCCESS'
 
 
 
@@ -67,6 +68,12 @@ export const signUpReducer = (state = initialState, action) => {
                 group: action.group
             }
         }
+        case SAVE_PHOTO_SUCCESS: {
+            return {
+                ...state,
+                signUp: {...signUp, photos: action.photos}
+            }
+        }
         default: {
             return state
         }
@@ -75,6 +82,7 @@ export const signUpReducer = (state = initialState, action) => {
 
 export const nextStep = () => ({ type: NEXT_STEP})
 export const previousStep = () => ({ type: PREVIOUS_STEP})
+export const savePhotoSuccess = (photos) => ({ type: SAVE_PHOTO_SUCCESS, photos})
 
 export const accountSetupInfoAC = (username, email, phone, password, role) => ({
     type: ACCOUNT_SETUP_INFO,
@@ -108,5 +116,12 @@ export const signUp = () => (dispatch, getState) => {
                 dispatch()
             }
         })
+}
+
+export const savePhoto = (file) => (dispatch) => {
+    let response = signUpAPI.savePhoto(file)
+    if (response.data.result) {
+        dispatch(savePhotoSuccess(response.data.photos))
+    }
 }
 

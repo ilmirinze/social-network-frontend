@@ -2,7 +2,7 @@ import React from "react";
 import {Field, reduxForm} from "redux-form";
 import {signUp} from "../../../../redux/sign-up-reducer";
 import classNames from "classnames";
-import s from '../sign-up.module.css'
+import s from '../../../../styles/auth.module.css'
 import {NavLink} from 'react-router-dom';
 import {Input} from "../../../common/form-controls/form-controls";
 import { required } from "../../../../utils/validators/validators";
@@ -19,7 +19,7 @@ const EducationDetailsForm = (props) => {
             </ul>
             <div className={s.fieldset}>
                 <h2 className={s.fs_title}>Create your account</h2>
-                <h3 className={s.fs_subtitle}>This is step 1</h3>
+                <h3 className={s.fs_subtitle}>This is step 3</h3>
                 <Field name={"institution"} placeholder={"educational institution"} component={Input} validate={required}/>
                 <Field name={"faculty"} placeholder={"faculty"} component={Input} validate={required}/>
                 <Field name={"course"} placeholder={"course"} component={Input} validate={required}/>

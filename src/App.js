@@ -4,7 +4,7 @@ import Navbar from './components/navbar/navbar.component';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DialogsContainer from './components/tabs-content/dialogs/dialogs.container';
 import UsersContainer from './components/tabs-content/users/users.container';
-import ProfileContainer from './components/tabs-content/profile/profile.ontainer';
+import ProfileContainer from './components/tabs-content/profile/profile.container';
 import HeaderContainer from './components/header/header.ontainer';
 import Login from './components/authentication/sign-in/sign-in.component';
 import SignUpContainer from "./components/authentication/sign-up/sign-up.container";

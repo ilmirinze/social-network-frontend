@@ -24,6 +24,7 @@ export const Input = (props) => {
     const {input, child, meta, ...restProps} = props
     return (<FormControl {...props}><input {...input} {...restProps} /></FormControl>)
 }
+
 export const ReduxFormSelect = (props) => {
     const {input, options, className} = props
     return (

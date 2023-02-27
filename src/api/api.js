@@ -59,6 +59,15 @@ export const signUpAPI = {
     isUsernameAvailable(username) {
         return instance.get('sign_up/check', { params: { username }})
         
+    },
+    savePhoto(photoFile) {
+        var formData = new formData()
+        formData.append('image', photoFile)
+         return instance.put('sign_up/photo', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+         })   
     }
 }
 

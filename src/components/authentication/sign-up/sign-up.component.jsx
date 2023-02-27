@@ -10,7 +10,9 @@ const SignUpComponent = (props) => {
             return <PersonalDetailsComponent
                 nextStep={props.nextStep}
                 previousStep={props.previousStep}
-                personalDetailsInfo={props.personalDetailsInfo}/>
+                personalDetailsInfo={props.personalDetailsInfo}
+                savePhoto={props.savePhoto}/>
+                
         }
         case 3: {
             return <EducationDetailsComponent

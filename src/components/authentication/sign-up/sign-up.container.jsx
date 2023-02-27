@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import React from "react";
 import SignUpComponent from "./sign-up.component";
-import {nextStep, previousStep, signUp, accountSetupInfoAC, personalDetailsInfoAC, educationDetailsInfoAC} from "../../../redux/sign-up-reducer";
+import {nextStep, previousStep, signUp, accountSetupInfoAC, personalDetailsInfoAC, educationDetailsInfoAC, savePhoto} from "../../../redux/sign-up-reducer";
 
 class SignUpContainer extends React.Component {
     
@@ -15,6 +15,7 @@ class SignUpContainer extends React.Component {
                 accountSetupInfo={this.props.accountSetupInfoAC}
                 personalDetailsInfo={this.props.personalDetailsInfoAC}
                 educationDetailsInfo={this.props.educationDetailsInfoAC}
+                savePhoto={this.props.savePhoto}
             />
         </>
     }
@@ -34,4 +35,5 @@ export default (
         personalDetailsInfoAC,
         educationDetailsInfoAC,
         signUp,
+        savePhoto,
     }))(SignUpContainer)
