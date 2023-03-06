@@ -11,6 +11,8 @@ import classNames from "classnames";
 
 
 const LoginForm = (props) => {
+
+
     return (
         <form onSubmit={props.handleSubmit} id={s.msform} >
             <h2 className={s.signUp}>sign in</h2>
@@ -34,17 +36,18 @@ const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm)
 const SignInComponent = (props) => {
     const onSubmit = (formData) => {
         props.login(formData.email, formData.password, formData.rememberMe, formData.isAuth = true)
+       // return <Navigate to={"/profile"} />
     }
 
-    if (props.isAuth) {
-        return <Navigate to={"/profile"} />
-    }
+    
 
     return (
         <div>
             <LoginReduxForm onSubmit={onSubmit} />
         </div>
     )
+
+    
     
 }
 

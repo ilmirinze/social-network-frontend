@@ -20,9 +20,6 @@ const DialogsComponent = (props) => {
     props.sendMessage(values.newMessageBody)
   }
 
-  if (!props.isAuth) {
-    return <Navigate to="/login" />
-  }
   
 
   return (

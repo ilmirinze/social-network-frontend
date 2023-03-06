@@ -1,46 +1,116 @@
-import React from 'react';
+import React, { useState } from "react";
+import s from "./navbar.module.css";
 import { NavLink } from 'react-router-dom';
-import s from './navbar.module.css'
+import classNames from "classnames";
+
+const Navbar = () => {
+	const [isExpanded, setExpendState] = useState(false);
+	const menuItems = [
+
+		{
+			text: "Profile",
+			icon: "001-reading.png",
+			link: "/profile"
+		},
+		{
+			text: "Messages",
+			icon: "",
+			link: '/dialogs'
+		},
+		{
+			text: "table",
+			icon: "",
+			link: ""
+		},
+		{
+			text: "todolist",
+			icon: "",
+			link: ""
+		},
+		{
+			text: "friends",
+			icon: "",
+			link: ""
+		},
+		{
+			text: "users",
+			icon: "",
+			link: "/users"
+
+		},
+		{
+			text: "teachers",
+			icon: "",
+			link: "/users"
+		},
+		{
+			text: "Settings",
+			icon: "",
+			link: "/users"
+		},
 
 
-const Nafbar = () => {
-  return (
-    <nav className={s.nav}>
-      <div>
-        <NavLink to='/profile' className={navData => navData.isActive ? s.active : s.item}>Profile</NavLink>
-      </div>
-      {/* <div>
-        <NavLink to='/dialogs' className={navData => navData.isActive ? s.active : s.item}>Messages</NavLink>
-      </div> */}
-      <div>
-        <NavLink to='/users' className={navData => navData.isActive ? s.active : s.item}>Users</NavLink>
-      </div>
-      {/* <div>
-        <NavLink to='1' className={navData => navData.isActive ? s.active : s.item}>News</NavLink>
-      </div>
-      <div>
-        <NavLink to='2' className={navData => navData.isActive ? s.active : s.item}>Music</NavLink>
-      </div>
-      <div>
-        <NavLink to='3' className={navData => navData.isActive ? s.active : s.item}>Settings</NavLink>
-      </div>
-      <div>
-        <NavLink to='4' className={navData => navData.isActive ? s.active : s.item}>friends</NavLink>
-      </div> */}
-      {/* <div className={s.allImages}>
-        <div>
-          <NavLink to='5' className={navData => navData.isActive ? s.active : s.item}><img src='https://i.pinimg.com/736x/12/8b/22/128b2276ba476261c4992b2b7f54b818.jpg' /></NavLink>
-        </div>
-        <div>
-          <NavLink to='6' className={navData => navData.isActive ? s.active : s.item}><img src='https://i.pinimg.com/736x/12/8b/22/128b2276ba476261c4992b2b7f54b818.jpg' /></NavLink>
-        </div>
-        <div>
-          <NavLink to='7' className={navData => navData.isActive ? s.active : s.item}><img src='https://i.pinimg.com/736x/12/8b/22/128b2276ba476261c4992b2b7f54b818.jpg' /></NavLink>
-        </div>
-      </div> */}
-    </nav>
-  )
-}
+	];
+	return (
+		//<nav className={s.nav}>
+			<div
+				className={
+					isExpanded
+						? s.sideNavContainer
+						: classNames(s.sideNavContainer, s.sideNavContainerNX)
+				}
+			>
+				<div className={s.navUpper}>
+					<div className={s.navHeading}>
+						{isExpanded && (
+							<div className={s.navBrand}>
+								<img src="icons/Logo.svg" alt="" srcset="" />
+								<h2>Showkart</h2>
+							</div>
+						)}
+						<button
+							className={
+								isExpanded ? classNames(s.hamburger, s.hamburgerIn) : classNames(s.hamburger, s.hamburgerOut)
+							}
+							onClick={() => setExpendState(!isExpanded)}
+						>
+							<span></span>
+							<span></span>
+							<span></span>
+						</button>
+					</div>
+					<div className={s.navMenu}>
+						{menuItems.map(({ text, icon, link }) => (
+							<NavLink to={link}
+								className={isExpanded ? s.menuItem : classNames(s.menuItem, s.menuItemNX)}
+							>
+								<img className={s.menuItemIcon} src={icon} alt="" srcset="" />
+								{isExpanded && <p >{text}</p>}
+							</NavLink>
+						))}
+					</div>
+				</div>
+				<div className={s.navFooter}>
+					{isExpanded && (
+						<div className={s.navDetails}>
+							<img
+								className={s.navFooterAvatar}
+								src="icons/admin-avatar.svg"
+								alt=""
+								srcset=""
+							/>
+							<div className={s.navFooterInfo}>
+								<p className={s.navFooterUserName}>M Showkat</p>
+								<p className={s.navFooterUserPosition}>store admin</p>
+							</div>
+						</div>
+					)}
+					<img className={s.logoutIcon} src="icons/logout.svg" alt="" srcset="" />
+				</div>
+			</div>
+		//</nav >
 
+	);
+};
 
-export default Nafbar;
+export default Navbar;

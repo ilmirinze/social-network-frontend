@@ -45,7 +45,7 @@ const AccountSetupForm = (props) => {
                 <Field placeholder={'password'} name={'password'} type={"password"} component={Input} validate={required}/>
                 <Field name={'role'} className={s.reactSelect} component={ReduxFormSelect} options={roleOptions} />
                 <button className={classNames(s.next, s.action_button)}>next</button>
-                <NavLink to='/login' className={s.texts}>Sign in</NavLink>
+                <div>Already have an account?<NavLink to='/login' className={s.texts}>Sign in</NavLink></div>
             </div>
         </form>
     )
