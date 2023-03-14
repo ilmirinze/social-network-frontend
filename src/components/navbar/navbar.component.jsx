@@ -3,7 +3,7 @@ import s from "./navbar.module.css";
 import { NavLink } from 'react-router-dom';
 import classNames from "classnames";
 
-const Navbar = () => {
+const Navbar = (props) => {
 	const [isExpanded, setExpendState] = useState(false);
 	const menuItems = [
 
@@ -52,7 +52,7 @@ const Navbar = () => {
 
 	];
 	return (
-		//<nav className={s.nav}>
+		<div className={s.navbar}>
 			<div
 				className={
 					isExpanded
@@ -105,10 +105,10 @@ const Navbar = () => {
 							</div>
 						</div>
 					)}
-					<img className={s.logoutIcon} src="icons/logout.svg" alt="" srcset="" />
+					<button className={s.btn}><img className={s.logoutIcon} src="icons/logout.svg" alt="" srcset=""  onClick={props.logout} /></button>
 				</div>
 			</div>
-		//</nav >
+		</div>
 
 	);
 };

@@ -111,7 +111,7 @@ export const educationDetailsInfoAC = (institution, faculty, course, group) => (
 
 export const signUp = () => (dispatch, getState) => {
     signUpAPI.signUp(getState().signUp)
-        .then(response => {
+        .then(response => {            
             if (response.data.result) {
                 dispatch()
             }

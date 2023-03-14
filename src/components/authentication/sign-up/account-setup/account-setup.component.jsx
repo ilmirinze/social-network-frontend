@@ -55,7 +55,7 @@ const AccountSetupReduxForm = reduxForm({form: 'signUp'})(AccountSetupForm)
 
 const AccountSetupComponent = (props) => {
     const onSubmit = async (formData) => {
-        props.accountSetupInfo(formData.username, formData.email, formData.phone, formData.password, formData.role)
+        props.accountSetupInfo(formData.username, formData.email, formData.phone, formData.password, formData.role.value)
         props.nextStep()
     }
     return <AccountSetupReduxForm onSubmit={onSubmit}/>

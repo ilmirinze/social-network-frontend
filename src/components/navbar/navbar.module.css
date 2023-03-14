@@ -1,9 +1,19 @@
 /* NX = not expanded */
 .nav {
 	grid-area: n;
-	background-color:rgb(32, 32, 32);
+	background-color: rgb(32, 32, 32);
 	padding: 20px;
-  }
+}
+
+.navbar {
+	width: 500px
+}
+
+.btn {
+	padding: 0;
+	border: none;
+	background: none;
+}
 
 .sideNavContainer {
 	background-color: var(--dark);
@@ -14,6 +24,7 @@
 	grid-area: n;
 	transition: 0.4s;
 }
+
 .sideNavContainerNX {
 	width: 85px;
 }
@@ -37,6 +48,7 @@
 	display: flex;
 	color: var(--light);
 }
+
 .navBrand img {
 	width: 40px;
 	padding: 0 10px;
@@ -68,13 +80,16 @@
 	width: 25px;
 	transform: translateY(4px) rotate(-25deg);
 }
+
 .hamburgerIn:hover span:nth-child(2) {
 	width: 40px;
 }
+
 .hamburgerIn:hover span:nth-child(3) {
 	width: 25px;
 	transform: translateY(-4px) rotate(25deg);
 }
+
 /* ///////////////////// */
 /* ///////////////////// */
 /* ///////////////////// */
@@ -82,13 +97,16 @@
 .hamburgerOut {
 	margin-left: 24px;
 }
+
 .hamburgerOut:hover span:nth-child(1) {
 	width: 25px;
 	transform: translate(14px, 4px) rotate(-155deg);
 }
+
 .hamburgerOut:hover span:nth-child(2) {
 	width: 40px;
 }
+
 .hamburgerOut:hover span:nth-child(3) {
 	width: 25px;
 	transform: translate(14px, -4px) rotate(155deg);
@@ -112,9 +130,11 @@
 .menuItemNX {
 	margin: auto;
 }
+
 .menuItem:hover {
 	background-color: var(--primary);
 }
+
 .menuItem img {
 	width: 30px;
 	padding: 0 20px;
@@ -132,6 +152,7 @@
 .navDetails {
 	display: flex;
 }
+
 .navDetails img {
 	width: 50px;
 	padding: 0 20px;
@@ -146,6 +167,7 @@
 	margin-top: -15px;
 	color: var(--gray);
 }
+
 .logoutIcon {
 	width: 30px;
 	margin: auto;
@@ -153,9 +175,7 @@
 	padding: 20px;
 	margin-left: 5px;
 }
+
 .logoutIcon:hover {
 	background-color: var(--primary);
 }
-
-
-

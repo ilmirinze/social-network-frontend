@@ -1,8 +1,16 @@
 .descriptionBlock {
-  padding: 10px;
+  padding: 20px;
+  width: 100%;
+  overflow: hidden;
 }
 
 .descriptionBlock img {
-  width: 100px;
-  height: 120px;
+  float: left;
+  width: 140px; /* задайте ширину для изображения */
+  height: auto; /* автоматически вычислить высоту */
+  margin-right: 20px; /* задать отступ справа для выравнивания */
+}
+
+.info {
+  margin-left: 220px; /* задать отступ слева для выравнивания */
 }

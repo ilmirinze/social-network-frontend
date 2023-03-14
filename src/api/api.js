@@ -54,6 +54,7 @@ export const signUpAPI = {
             institution: userData.institution,
             faculty: userData.faculty,
             course: userData.course,
+            phone: userData.phone
         })
     },
     isUsernameAvailable(username) {

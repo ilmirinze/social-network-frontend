@@ -56,7 +56,7 @@ const PersonalDetailsReduxForm = reduxForm({form: 'signUp'})(PersonalDetailsForm
 
 const PersonalDetailsComponent = (props) => {
     const onSubmit = (formData) => {
-        props.personalDetailsInfo(formData.firstName, formData.lastName, formData.gender, formData.birthday)
+        props.personalDetailsInfo(formData.firstName, formData.lastName, formData.gender.value, formData.birthday)
         props.nextStep()
     }
     return <PersonalDetailsReduxForm onSubmit={onSubmit} previousStep={props.previousStep}/>
