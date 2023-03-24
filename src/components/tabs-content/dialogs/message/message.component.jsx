@@ -3,8 +3,8 @@ import s from "../dialogs.module.css";
 
 
 const MessageComponent = (props) => {
-  let userId = 1
-  return <div className={userId === 1 ? s.mymessageContainer : s.alienmessageContainer}><div className={userId === 1 ? s.mymessage : s.alienmessage}><p>{props.messages}</p></div></div>;
+  let userId = 10
+  return <div className={userId === 1 ? s.mymessageContainer : s.alienmessageContainer}><div className={userId === 1 ? s.mymessage : s.alienmessage}>{props.messages}</div></div>;
 };
 
 export default MessageComponent;

@@ -112,6 +112,7 @@
     width:100%;
     display:flex;
     justify-content: flex-end;
+    flex-wrap: wrap;
 }
 
 .mymessage {
@@ -121,16 +122,14 @@
     background-color: rgba(98, 255, 255, 0.465);
     width: fit-content;
     max-width: 40rem;
-}
-
-.mymessage > p {
-    white-space: normal;
+    word-wrap: break-word;
 }
 
 .alienmessageContainer {
     width:100%;
     display:flex;
     justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
 .alienmessage {
@@ -140,8 +139,5 @@
     background-color: rgba(171, 171, 171, 0.465);
     width: fit-content;
     max-width: 40rem;
-}
-
-.alienmessage>p {
-    white-space: normal;
+    word-wrap: break-word;
 }
