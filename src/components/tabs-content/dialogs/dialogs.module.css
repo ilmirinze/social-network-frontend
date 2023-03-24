@@ -96,7 +96,8 @@
 }
 
 .massages {
-    display: inline-block;
+    display:inline-block;
+    width:100%;
 }
 
 .messagesSection {
@@ -105,7 +106,12 @@
     position: relative;
     border: 4px black;
     border-radius: 10%;
+}
 
+.mymessageContainer {
+    width:100%;
+    display:flex;
+    justify-content: flex-end;
 }
 
 .mymessage {
@@ -114,6 +120,17 @@
     border-radius: 30px;
     background-color: rgba(98, 255, 255, 0.465);
     width: fit-content;
+    max-width: 40rem;
+}
+
+.mymessage > p {
+    white-space: normal;
+}
+
+.alienmessageContainer {
+    width:100%;
+    display:flex;
+    justify-content: flex-start;
 }
 
 .alienmessage {
@@ -123,9 +140,8 @@
     background-color: rgba(171, 171, 171, 0.465);
     width: fit-content;
     max-width: 40rem;
-    overflow: clip;
 }
 
 .alienmessage>p {
-    white-space: initial;
+    white-space: normal;
 }
