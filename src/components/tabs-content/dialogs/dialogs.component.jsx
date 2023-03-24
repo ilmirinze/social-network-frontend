@@ -6,6 +6,9 @@ import { Navigate } from "react-router-dom"
 import { Field, reduxForm } from "redux-form";
 import { Input } from "../../common/form-controls/form-controls";
 import { maxLengthCreator, required } from "../../../utils/validators/validators";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPaperPlane} from '@fortawesome/free-solid-svg-icons'
+
 
 const maxLength50 = maxLengthCreator(50)
 
@@ -42,8 +45,8 @@ const DialogsComponent = (props) => {
 const AddMessageForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit} className= {s.sendMessage}>
-      <Field component={Input} name='newMessageBody' placeholder='enter your message' className={s.input}></Field>
-      <button className={s.btn}>Send</button>
+      <Field component={Input} name='newMessageBody' placeholder='Enter your message' className={s.input}></Field>
+      <button className={s.btn}><FontAwesomeIcon className={s.icon} icon={faPaperPlane} /></button>
     </form>
   )
 }
