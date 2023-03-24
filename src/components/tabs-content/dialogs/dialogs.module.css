@@ -1,19 +1,73 @@
 .dialogs {
-    display: grid;
-    grid-template-rows: 60 px 1fr;
-    grid-template-columns: 2fr 10fr;
-    position:relative;
-    padding-bottom:50px;
+    display: flex;
+    position: relative;
+
+}
+
+.mainContent {
+    width: 920px;
+    position: relative;
+    background-color: white;
+}
+
+.sendMessage {
+    /* This bit sets up the horizontal layout */
+    display: flex;
+    flex-direction: row;
+
+    /* This bit draws the box around it */
+    border: 1px solid grey;
+
+    /* I've used padding so you can see the edges of the elements. */
+    padding: 1px;
+}
+
+.sendMessage input {
+
+    /* Tell the input to use all the available space */
+    flex-grow: 2;
+    /* And hide the input's outline, so the form looks like the outline */
+    border: none;
+    width: 90vh;
+    padding: 15px;
+    border: 0px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: black;
+    font-size: 13px;
+
+}
+
+.sendMessage input:focus {
+    outline: none;
+}
+
+.sendMessage :focus-within {
+    outline: 1px solid 
+}
+
+.btn {
+    /* Just a little styling to make it pretty */
+    border: 1px solid;
+    color: white;
+}
+
+.addedContent {
+    width: 500px;
+    height: 100vh;
 }
 
 .dialogsItems {
     padding: 10px;
     text-decoration: none;
+
 }
 
 
 .item {
-    color: white;
+    color: rgb(0, 0, 0);
     text-decoration: none;
 }
 
@@ -29,10 +83,22 @@
 }
 
 .massage {
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
-.dialogs .sendMessage {
-    display: flex;
-    position:absolute;
+.messagesSection {
+    width: 100%;
+    height: 92%;
+    position: relative;
+    border: 4px black;
+    border-radius: 10%;
+
+}
+
+.mymessage {
+    text-align: right;
+}
+
+.alienmessage {
+    text-align: left;
 }

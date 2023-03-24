@@ -7,7 +7,6 @@ const ProfileComponent = (props) => {
 
   return <div>
       <ProfileInfoComponent profile={props.profile} status = {props.status} updateStatus={props.updateStatus} />
-      <MyPostsContainer addNewPost={props.addNewPost} userId={props.userId}/>
     </div>
 }
 

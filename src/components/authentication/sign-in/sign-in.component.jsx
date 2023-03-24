@@ -8,7 +8,7 @@ import { Navigate } from "react-router-dom";
 import s from '../../../styles/auth.module.css'
 import { NavLink } from 'react-router-dom';
 import classNames from "classnames";
-
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = (props) => {
 
@@ -21,9 +21,9 @@ const LoginForm = (props) => {
                 <Field validate={[required]} placeholder={'email'} name={'email'} component={Input} />
                 <Field validate={[required]} placeholder={'password'} name={'password'} type={"password"} component={Input} />
                 <div className={s.rememberMe}>
-                    <Field component={Input} name={'rememberMe'} type={'checkbox'} /> 
+                    <Field component={Input} name={'rememberMe'} type={'checkbox'} />
                     <div className={s.texts}>remember me</div>
-                    </div>                
+                </div>
                 <button className={classNames(s.next, s.action_button)}>Login</button>
                 <NavLink to='/signUp' className={s.texts}>Sign up</NavLink>
             </div>
@@ -34,12 +34,13 @@ const LoginForm = (props) => {
 const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm)
 
 const SignInComponent = (props) => {
-    const onSubmit = (formData) => {
+    const navigate = useNavigate();
+    const onSubmit = (formData) => {        
         props.login(formData.email, formData.password, formData.rememberMe, formData.isAuth = true)
-       // return <Navigate to={"/profile"} />
+        navigate('/profile', { replace: true });
     }
 
-    
+
 
     return (
         <div>
@@ -47,8 +48,8 @@ const SignInComponent = (props) => {
         </div>
     )
 
-    
-    
+
+
 }
 
 const mapStateToProps = (state) => ({

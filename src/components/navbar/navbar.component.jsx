@@ -100,8 +100,8 @@ const Navbar = (props) => {
 								srcset=""
 							/>
 							<div className={s.navFooterInfo}>
-								<p className={s.navFooterUserName}>M Showkat</p>
-								<p className={s.navFooterUserPosition}>store admin</p>
+								<p className={s.navFooterUserName}>{props.username}</p>
+								<p className={s.navFooterUserPosition}>{props.role}</p>
 							</div>
 						</div>
 					)}

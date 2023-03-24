@@ -1,11 +1,12 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
-import {signUp} from "../../../../redux/sign-up-reducer";
 import classNames from "classnames";
 import s from '../../../../styles/auth.module.css'
 import {NavLink} from 'react-router-dom';
 import {Input} from "../../../common/form-controls/form-controls";
 import { required } from "../../../../utils/validators/validators";
+import { useNavigate } from "react-router-dom";
+
 
 
 const EducationDetailsForm = (props) => {
@@ -35,9 +36,11 @@ const EducationDetailsForm = (props) => {
 const EducationDetailsReduxForm = reduxForm({form: 'signUp'})(EducationDetailsForm)
 
 const EducationDetailsComponent = (props) => {
+    const navigate = useNavigate();
     const onSubmit = (formData) => {
         props.educationDetailsInfo(formData.institution, formData.faculty, formData.course, formData.group)
         props.signUp()
+        navigate('/login', {replace: true});
     }
     return <EducationDetailsReduxForm onSubmit={onSubmit} previousStep={props.previousStep}/>
 }

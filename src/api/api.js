@@ -95,3 +95,13 @@ export const postAPI = {
     }
 }
 
+
+export const messageAPI = {
+    showMessage(userId, toUserId) {
+        return instance.get(`dialogs/` + userId + toUserId)
+        .then(response => response.data)
+    },
+    sendMessage(userId, toUserId, message) {
+        return instance.post(`dislogs/`, {message, userId, toUserId})
+    }
+}

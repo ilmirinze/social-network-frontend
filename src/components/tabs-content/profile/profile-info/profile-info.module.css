@@ -1,3 +1,10 @@
+.mainContent {
+  width: 920px;
+  height: 100vh;
+  position: relative;
+  background-color: white ;
+}
+
 .descriptionBlock {
   padding: 20px;
   width: 100%;
@@ -6,11 +13,25 @@
 
 .descriptionBlock img {
   float: left;
-  width: 140px; /* задайте ширину для изображения */
-  height: auto; /* автоматически вычислить высоту */
-  margin-right: 20px; /* задать отступ справа для выравнивания */
+  width: 400px;
+  /* задайте ширину для изображения */
+  height: auto;
+  /* автоматически вычислить высоту */
+  margin-right: 20px;
+  /* задать отступ справа для выравнивания */
+  border-radius: 10px;
 }
 
 .info {
-  margin-left: 220px; /* задать отступ слева для выравнивания */
+  margin-left: 220px;
+  /* задать отступ слева для выравнивания */
+}
+
+
+.text {
+  color: black
+}
+
+.name {
+  color: rgb(34, 34, 34)
 }

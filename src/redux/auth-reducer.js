@@ -40,11 +40,9 @@ export const getAuthUserData = () => (dispatch) => {
 }
 
 export const login = (email, password, rememberMe) => (dispatch) => {
-    debugger
     authAPI.login(email, password, rememberMe)
     .then(response => {
         if (response.data.result) {
-            debugger
             dispatch(getAuthUserData())
         } else {
             let action = stopSubmit('login, {Email is wrong}')

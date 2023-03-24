@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Navbar from './components/navbar/navbar.component';
+import NavbarContainer from './components/navbar/navbar.container';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DialogsContainer from './components/tabs-content/dialogs/dialogs.container';
 import UsersContainer from './components/tabs-content/users/users.container';
@@ -15,7 +15,7 @@ const App = (props) => {
 
 
       <div className='app-wrapper'>
-        <Navbar />
+        <NavbarContainer />
         <div className={'app-wrapper-content'}>
           <Routes>
             <Route path='/dialogs' element={<DialogsContainer />} />

@@ -1,6 +1,5 @@
 /* NX = not expanded */
 .nav {
-	grid-area: n;
 	background-color: rgb(32, 32, 32);
 	padding: 20px;
 }
