@@ -1,3 +1,20 @@
+.mainContent {
+    width: 920px;
+    height: 100vh;
+    position: relative;
+    background-color: white;
+}
+
+.addedContent {
+    width: 500px;
+    height: 100vh;
+    margin-left: 2rem;
+
+}
+
+
+
+
 .userPhoto {
     width: 90px;
     height: 100px;

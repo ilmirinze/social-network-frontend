@@ -1,4 +1,7 @@
+
+
 const SEND_MESSAGE = 'SEND-MESSAGE'
+
 
 let initialState = {
     dialogs: [
@@ -24,7 +27,6 @@ const dialogsReducer = (state = initialState, action) => {
                 ...state,
                 messages: [...state.messages, newMessage],
             }
-            
        
         default:
             return state;

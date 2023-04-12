@@ -8,6 +8,7 @@
     width: 920px;
     position: relative;
     background-color: white;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
 }
 
 .sendMessage {
@@ -66,6 +67,14 @@
 .addedContent {
     width: 500px;
     height: 100vh;
+    margin-left: 2rem;
+
+}
+
+.user {
+    display: flex;
+    width: 7rem;
+    margin-bottom: 1rem;
 }
 
 .dialogsItems {
@@ -78,6 +87,8 @@
 .item {
     color: rgb(0, 0, 0);
     text-decoration: none;
+    width: max-content ;
+    white-space: nowrap;
 }
 
 .active {
@@ -86,9 +97,10 @@
 }
 
 .image {
-    width: 30px;
-    height: 30px;
+    width: 3rem;
+    height: 3rem;
     border-radius: 100%;
+    margin-right: 1rem;
 }
 
 .massage {

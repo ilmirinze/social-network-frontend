@@ -8,6 +8,13 @@ import ProfileContainer from './components/tabs-content/profile/profile.containe
 import Login from './components/authentication/sign-in/sign-in.component';
 import SignUpContainer from "./components/authentication/sign-up/sign-up.container";
 
+const SOCKET_URL = 'http://localhost:8080/ws-chat/';
+
+
+let onConnected = () => {
+  console.log("Connected!!")
+}
+
 
 const App = (props) => {
   return (

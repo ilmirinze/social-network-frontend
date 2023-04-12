@@ -4,7 +4,7 @@ import s from "../dialogs.module.css";
 const DialogItemComponent = (props) => {
   let path = "/dialogs/" + props.id;
   return (
-    <div >
+    <div className={s.user}>
       <img className={s.image} src={props.image} /><NavLink className={(masData) => masData.isActive ? s.active : s.item} to={path}>{props.name}</NavLink>
     </div>
   );
