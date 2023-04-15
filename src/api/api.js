@@ -1,5 +1,7 @@
 import axios from "axios"
 
+const CHAT_SERVICE = "http://localhost:8888";
+
 let instance = axios.create({
     withCredentials: true,
     baseURL: 'http://localhost:8888/api/',
@@ -24,7 +26,7 @@ export const usersAPI = {
     getProfile(userId) {
         return profileAPI.getProfile
     },
-   
+
 }
 
 export const authAPI = {
@@ -58,17 +60,17 @@ export const signUpAPI = {
         })
     },
     isUsernameAvailable(username) {
-        return instance.get('sign_up/check', { params: { username }})
-        
+        return instance.get('sign_up/check', { params: { username } })
+
     },
     savePhoto(photoFile) {
         var formData = new formData()
         formData.append('image', photoFile)
-         return instance.put('sign_up/photo', formData, {
+        return instance.put('sign_up/photo', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
-         })   
+        })
     }
 }
 
@@ -96,12 +98,72 @@ export const postAPI = {
 }
 
 
+
+const request = (options) => {
+    const headers = new Headers();
+  
+    if (options.setContentType !== false) {
+      headers.append("Content-Type", "application/json");
+    }
+  
+    if (localStorage.getItem("accessToken")) {
+      headers.append(
+        "Authorization",
+        "Bearer " + localStorage.getItem("accessToken")
+      );
+    }
+  
+    const defaults = { headers: headers };
+    options = Object.assign({}, defaults, options);
+  
+    return fetch(options.url, options).then((response) =>
+      response.json().then((json) => {
+        if (!response.ok) {
+          return Promise.reject(json);
+        }
+        return json;
+      })
+    );
+  };
+
+export function countNewMessages(senderId, recipientId) {
+    if (!localStorage.getItem("accessToken")) {
+        return Promise.reject("No access token set.");
+    }
+    return request({
+        url: CHAT_SERVICE + "/messages/" + senderId + "/" + recipientId + "/count",
+        method: "GET",
+    });
+}
+
+export function findChatMessages(senderId, recipientId) {
+    if (!localStorage.getItem("accessToken")) {
+        return Promise.reject("No access token set.");
+    }
+
+    return request({
+        url: CHAT_SERVICE + "/messages/" + senderId + "/" + recipientId,
+        method: "GET",
+    });
+}
+
+export function findChatMessage(id) {
+    if (!localStorage.getItem("accessToken")) {
+        return Promise.reject("No access token set.");
+    }
+
+    return request({
+        url: CHAT_SERVICE + "/messages/" + id,
+        method: "GET",
+    });
+}
+
 export const messageAPI = {
     showMessage(userId, toUserId) {
         return instance.get(`dialogs/` + userId + toUserId)
-        .then(response => response.data)
+            .then(response => response.data)
     },
-    sendMessage(userId, toUserId, message) {
-        return instance.post(`dislogs/`, {message, userId, toUserId})
+    sendMessage(message, userId, toUserId) {
+        return instance.post(`dialogs/`, { message, userId, toUserId })
     }
 }

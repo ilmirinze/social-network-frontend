@@ -6,6 +6,7 @@ import authReducer from "./auth-reducer";
 import thunkMiddleware from "redux-thunk"
 import {reducer as formReducer} from 'redux-form'
 import {signUpReducer} from "./sign-up-reducer";
+import chatReducer from "./chat-reducer";
 
 let reducers = combineReducers({
     profilePage: profileReducer,
@@ -13,6 +14,7 @@ let reducers = combineReducers({
     usersPage: usersReducer,
     auth: authReducer,
     signUp: signUpReducer,
+    chat: chatReducer,
     form: formReducer
 });
 

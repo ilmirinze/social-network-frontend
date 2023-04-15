@@ -5,13 +5,10 @@ const SEND_MESSAGE = 'SEND-MESSAGE'
 
 let initialState = {
     dialogs: [
-        { id: 1, name: "Ilmir", image: "https://i.ytimg.com/vi/GGXF-566Dkg/maxresdefault.jpg" },
-        { id: 2, name: "Silent sword", image: "https://i.ytimg.com/vi/wbusQOv0UIU/maxresdefault.jpg" },
+        {id : null, name : '',}
     ],
     messages: [
-        { id: 0, message: "hi" },
-        { id: 1, message: "how are u?" },
-        { id: 2, message: "pidr1" },
+        {id : null, message : ''}
     ],
 }
 

@@ -23,33 +23,30 @@ const DialogsComponent = (props) => {
 
 
   let addNewMessage = (values) => {
-    props.sendMessage(values.newMessageBody)
+    props.sendMessageAC(values.newMessageBody)
   }
+  var SockJS = require("sockjs-client");
+  var sock = new SockJS('http://localhost:8888/ws');
+  sock.onopen = function() {
+      console.log('open');
+      sock.send('test');
+  };
+ 
+  sock.onmessage = function(e) {
+      console.log('message', e.data);
+      sock.close();
+  };
+ 
+  sock.onclose = function() {
+      console.log('close');
+  };
     
-  useEffect(() => {
-    connect();
-  }, []);
 
 
-  const connect = () => {
-    
-    const Stomp = require("stompjs");
-    var SockJS = require("sockjs-client");
-    SockJS = new SockJS("http://localhost:8080/ws");
-    stompClient = Stomp.over(SockJS);
-    stompClient.connect({}, onConnected, onError);
-  };
+  
 
-  const onConnected = () => {
-    console.log("connected");
-  };
-
-  const onError = (err) => {
-    debugger
-    console.log(err);
-  };
-
-
+  
+  
   
   return (
     <div className={s.dialogs}>
