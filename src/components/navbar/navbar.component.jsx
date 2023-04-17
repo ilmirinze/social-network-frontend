@@ -15,7 +15,7 @@ const Navbar = (props) => {
 		{
 			text: "Messages",
 			icon: "",
-			link: '/dialogs'
+			link: "/chat"
 		},
 		{
 			text: "table",

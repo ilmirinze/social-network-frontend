@@ -1,20 +1,21 @@
-import React, {useEffect, useRef, useState} from 'react'
-import {ChatMessageAPIType} from '../../../api/chat-api'
-import {useDispatch, useSelector} from 'react-redux'
-import {sendMessage, startMessagesListening, stopMessagesListening} from '../../redux/chat-reducer'
+import React, { useEffect, useRef, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { sendMessage, startMessagesListening, stopMessagesListening } from '../../../redux/chat-reducer'
+import s from './chat.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
 
 
 const ChatPage = () => {
     return <div>
-        <Chat/>
+        <Chat />
     </div>
 }
 
 const Chat = () => {
 
     const dispatch = useDispatch()
-
 
     const status = useSelector((state) => state.chat.status)
 
@@ -27,22 +28,25 @@ const Chat = () => {
 
     return <div>
         {status === 'error' && <div>Some error occured. Please refresh the page</div>}
-        <>
-            <Messages/>
-            <AddMessageForm/>
-        </>
+        <div className={s.mainContent}>
+            <div className={s.messagesSection}>
+                <div className={s.massages}>
+                    <Messages />                    
+                </div>
+            </div>
+            <AddMessageForm />
+        </div>
     </div>
 }
 
-const Messages = ({}) => {
+const Messages = ({ }) => {
     const messages = useSelector((state) => state.chat.messages)
-    const messagesAnchorRef = useRef<HTMLDivElement>(null);
+    const messagesAnchorRef = useRef(null);
     const [isAutoScroll, setIsAutoScroll] = useState(true)
 
     const scrollHandler = (e) => {
         const element = e.currentTarget;
-        if (Math.abs( (element.scrollHeight - element.scrollTop) - element.clientHeight ) < 300)
-        {
+        if (Math.abs((element.scrollHeight - element.scrollTop) - element.clientHeight) < 300) {
             !isAutoScroll && setIsAutoScroll(true)
         } else {
             isAutoScroll && setIsAutoScroll(false)
@@ -51,25 +55,25 @@ const Messages = ({}) => {
 
     useEffect(() => {
         if (isAutoScroll) {
-            messagesAnchorRef.current?.scrollIntoView({behavior: 'smooth'})
+            messagesAnchorRef.current?.scrollIntoView({ behavior: 'smooth' })
         }
     }, [messages])
 
-    return <div style={{height: '400px', overflowY: 'auto'}} onScroll={scrollHandler}>
-        {messages.map((m, index) => <Message key={m.id} message={m}/>)}
+    return <div onScroll={scrollHandler} >
+        {messages.map((m, index) => <Message key={m.id} message={m} />)}
         <div ref={messagesAnchorRef}></div>
     </div>
 }
 
 
-const Message = React.memo( ({message}) => {
+const Message = React.memo(({ message }) => {
     console.log(">>>>>>Message")
-    return <div>
-        <img src={message.photo} style={{width: '30px'}}/> <b>{message.userName}</b>
-        <br/>
+    return <div className={s.dialogs}>
         {message.message}
-        <hr/>
-    </div>
+        <div className={s.addedContent}>
+            <img src={message.photo} style={{ width: '30px' }} /> <b>{message.userName}</b>
+        </div>
+    </div >
 })
 
 
@@ -89,11 +93,11 @@ const AddMessageForm = () => {
     }
 
     return <div>
-        <div>
-            <textarea onChange={(e) => setMessage(e.currentTarget.value)} value={message}></textarea>
+        <div className={s.sendMessage}>
+            <textarea className={s.input} onChange={(e) => setMessage(e.currentTarget.value)} value={message}></textarea>
         </div>
         <div>
-            <button disabled={status !== 'ready'} onClick={sendMessageHandler}>Send</button>
+            <button className={s.btn} disabled={status !== 'ready'} onClick={sendMessageHandler}><FontAwesomeIcon className={s.icon} icon={faPaperPlane} /></button>
         </div>
     </div>
 }

@@ -7,6 +7,7 @@ import UsersContainer from './components/tabs-content/users/users.container';
 import ProfileContainer from './components/tabs-content/profile/profile.container';
 import Login from './components/authentication/sign-in/sign-in.component';
 import SignUpContainer from "./components/authentication/sign-up/sign-up.container";
+import ChatPage from './components/tabs-content/chat/chat';
 
 const SOCKET_URL = 'http://localhost:8080/ws-chat/';
 
@@ -29,7 +30,9 @@ const App = (props) => {
             <Route path='/dialogs/*' element={<DialogsContainer />} />
             <Route path="/signUp" element={<SignUpContainer />} />
             <Route path='/login' element={<Login />} />
+            <Route path="/chat" element={<ChatPage />} />
             <Route path="/profile" element={<ProfileContainer />}>
+            
               <Route path=":userId" element={<ProfileContainer />} />
             </Route>
             <Route path='/users' element={<UsersContainer />} />
