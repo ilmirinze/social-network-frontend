@@ -1,4 +1,4 @@
-import { profileAPI, postAPI } from "../api/api"
+import { profileAPI, postAPI } from "../api/profile-api"
 
 const ADD_POST = 'ADD-POST'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'

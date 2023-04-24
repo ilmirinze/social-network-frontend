@@ -35,7 +35,7 @@ const notifySubscribersAboutStatus = (status) => {
 
 function createChannel() {
   cleanUp()
-  stompClient?.close()
+  //stompClient?.close()
   
   notifySubscribersAboutStatus('pending')
  
@@ -101,7 +101,6 @@ export const chatAPI = {
   },
 
   sendMessage(msg, senderId) {
-    debugger
     if (msg.trim() !== "") {
       const message = {
         senderId: senderId,
@@ -111,9 +110,7 @@ export const chatAPI = {
         content: msg,
         timestamp: new Date(),
       };
-      stompClient.send("/app/chat", {}, JSON.stringify(message));
-
-      
+      stompClient.send("/app/chat", {}, JSON.stringify(message));      
     }
   }
 }

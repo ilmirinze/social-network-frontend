@@ -1,4 +1,4 @@
-import { signUpAPI } from "../api/api"
+import { signUpAPI } from "../api/signup-api"
 
 const NEXT_STEP = 'NEXT-STEP'
 const PREVIOUS_STEP = 'PREVIOUS-STEP'

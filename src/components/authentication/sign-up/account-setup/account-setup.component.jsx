@@ -1,12 +1,12 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
 import {Input, ReduxFormSelect} from "../../../common/form-controls/form-controls";
-import {signUp} from "../../../../redux/sign-up-reducer";
+
 import classNames from "classnames";
 import s from '../../../../styles/auth.module.css'
 import {NavLink} from 'react-router-dom';
 import { required, maxLengthCreator, minLengthCreator, validateMail, validatePhone, usernameCheckValidate } from "../../../../utils/validators/validators";
-import { signUpAPI } from "../../../../api/api";
+
 
 
 
