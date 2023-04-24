@@ -6,15 +6,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
 
-
 const ChatPage = () => {
     return <div>
         <Chat />
     </div>
 }
 
-const Chat = () => {
-
+const Chat = (props) => {
+    
     const dispatch = useDispatch()
 
     const status = useSelector((state) => state.chat.status)
@@ -25,6 +24,8 @@ const Chat = () => {
             dispatch(stopMessagesListening())
         }
     }, [])
+
+    
 
     return <div>
         {status === 'error' && <div>Some error occured. Please refresh the page</div>}
@@ -70,20 +71,17 @@ const Message = React.memo(({ message }) => {
     console.log(">>>>>>Message")
     return <div className={s.dialogs}>
         {message.message}
-        <div className={s.addedContent}>
+        <div >
             <img src={message.photo} style={{ width: '30px' }} /> <b>{message.userName}</b>
         </div>
     </div >
 })
 
 
-const AddMessageForm = () => {
+const AddMessageForm = (state) => {
     const [message, setMessage] = useState('')
     const dispatch = useDispatch()
-
     const status = useSelector((state) => state.chat.status)
-
-
     const sendMessageHandler = () => {
         if (!message) {
             return
@@ -92,14 +90,15 @@ const AddMessageForm = () => {
         setMessage('')
     }
 
-    return <div>
-        <div className={s.sendMessage}>
-            <textarea className={s.input} onChange={(e) => setMessage(e.currentTarget.value)} value={message}></textarea>
-        </div>
+
+    
+
+    return  <div className={s.sendMessage}>
+            <input className={s.input} onChange={(e) => setMessage(e.currentTarget.value)} value={message}></input>
         <div>
-            <button className={s.btn} disabled={status !== 'ready'} onClick={sendMessageHandler}><FontAwesomeIcon className={s.icon} icon={faPaperPlane} /></button>
+            <button className={s.btn} onClick={sendMessageHandler}><FontAwesomeIcon className={s.icon} icon={faPaperPlane} /></button>
         </div>
-    </div>
+        </div>
 }
 
 export default ChatPage

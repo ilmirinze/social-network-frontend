@@ -60,6 +60,10 @@
     background-color: rgba(0, 255, 255, 0.409);
 }
 
+.btn hover {
+    color: yellow
+}
+
 .icon {
     font-size: 1.7rem
 }

@@ -3,6 +3,11 @@ import {v1} from 'uuid'
 
 
 let initialState = {
+    senderId: window.localStorage.getItem("userId"),
+    recipientId: null,
+    senderName: '',
+    content: null,
+    timestamp: new Date(),
     messages: [],
     status: null,
 }
@@ -25,8 +30,8 @@ const chatReducer = (state = initialState, action) => {
 }
 
 export const actions = {
-    messagesReceived: (messages) => ({
-        type: 'SN/chat/MESSAGES_RECEVIED', payload: {messages}
+    messagesReceived: (messages, senderId) => ({
+        type: 'SN/chat/MESSAGES_RECEVIED', payload: {messages, senderId}
     } ),
     statusChanged: (status) => ({
         type: 'SN/chat/STATUS_CHANGED', payload: {status}
@@ -65,8 +70,8 @@ export const stopMessagesListening = () => async (dispatch) => {
     chatAPI.stop()
 }
 
-export const sendMessage = (message) => async (dispatch) => {
-    chatAPI.sendMessage(message)
+export const sendMessage = (message ) => async (dispatch) => {
+    chatAPI.sendMessage(message, initialState.senderId)
 }
 
 

@@ -64,7 +64,7 @@ const Navbar = (props) => {
 					<div className={s.navHeading}>
 						{isExpanded && (
 							<div className={s.navBrand}>
-								<img src="icons/Logo.svg" alt="" srcset="" />
+								<img src="icons/Logo.svg" alt="" srcSet="" />
 								<h2>Showkart</h2>
 							</div>
 						)}
@@ -84,7 +84,7 @@ const Navbar = (props) => {
 							<NavLink to={link}
 								className={isExpanded ? s.menuItem : classNames(s.menuItem, s.menuItemNX)}
 							>
-								<img className={s.menuItemIcon} src={icon} alt="" srcset="" />
+								<img className={s.menuItemIcon} src={icon} alt="" srcSet="" />
 								{isExpanded && <p >{text}</p>}
 							</NavLink>
 						))}
@@ -97,7 +97,7 @@ const Navbar = (props) => {
 								className={s.navFooterAvatar}
 								src="icons/admin-avatar.svg"
 								alt=""
-								srcset=""
+								srcSet=""
 							/>
 							<div className={s.navFooterInfo}>
 								<p className={s.navFooterUserName}>{props.username}</p>
@@ -105,7 +105,7 @@ const Navbar = (props) => {
 							</div>
 						</div>
 					)}
-					<button className={s.btn}><img className={s.logoutIcon} src="icons/logout.svg" alt="" srcset=""  onClick={props.logout} /></button>
+					<button className={s.btn}><img className={s.logoutIcon} src="icons/logout.svg" alt="" srcSet=""  onClick={props.logout} /></button>
 				</div>
 			</div>
 		</div>
