@@ -1,6 +1,5 @@
 import axios from "axios"
 
-const CHAT_SERVICE = "http://localhost:8888";
 
 let instance = axios.create({
     withCredentials: true,

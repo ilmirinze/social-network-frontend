@@ -4,6 +4,7 @@ import { sendMessage, startMessagesListening, stopMessagesListening } from '../.
 import s from './chat.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import ChatUsers from './chatUsers'
 
 
 const ChatPage = () => {
@@ -27,7 +28,7 @@ const Chat = (props) => {
 
     
 
-    return <div>
+    return <div className={s.dialogs}>
         {status === 'error' && <div>Some error occured. Please refresh the page</div>}
         <div className={s.mainContent}>
             <div className={s.messagesSection}>
@@ -37,6 +38,10 @@ const Chat = (props) => {
             </div>
             <AddMessageForm />
         </div>
+        <div className={s.addedContent}>
+          <ChatUsers />
+        </div>
+
     </div>
 }
 

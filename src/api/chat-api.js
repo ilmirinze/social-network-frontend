@@ -1,3 +1,15 @@
+import axios from "axios"
+
+
+let instance = axios.create({
+    withCredentials: true,
+    baseURL: 'http://localhost:8888/api/',
+    headers: {
+        "API-KEY": "36cb0cd3-4170-40c7-b77b-4b6c48422257"
+    }
+})
+
+
 const subcribers = {
   'messages-received': [],
   'status-changed': []
@@ -99,6 +111,9 @@ export const chatAPI = {
     // @ts-ignore
     subcribers[eventName] = subcribers[eventName].filter(s => s !== callback)
   },
+  findChatMessages(senderId, recipientId) {
+    return instance.get('messages/' + senderId + '/' + recipientId ) 
+  },
 
   sendMessage(msg, senderId) {
     if (msg.trim() !== "") {
@@ -114,4 +129,5 @@ export const chatAPI = {
     }
   }
 }
+
 

@@ -20,17 +20,12 @@ const Navbar = (props) => {
 		{
 			text: "table",
 			icon: "",
-			link: ""
+			link: "/table"
 		},
 		{
 			text: "todolist",
 			icon: "",
-			link: ""
-		},
-		{
-			text: "friends",
-			icon: "",
-			link: ""
+			link: "/todolist"
 		},
 		{
 			text: "users",

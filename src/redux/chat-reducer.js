@@ -1,5 +1,13 @@
-import {chatAPI} from '../api/chat-api'
-import {v1} from 'uuid'
+import { chatAPI } from '../api/chat-api'
+import { usersAPI } from "../api/users-api"
+import { v1 } from 'uuid'
+
+
+const SET_USERS = 'SET-USERS'
+const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE-IS-FOLLOWING-PROGRESS'
+const SET_RECIPIENTID = 'SET-RECIPIENTID'
+const SET_MESSAGES = 'SET-MESSAGES'
 
 
 let initialState = {
@@ -10,13 +18,15 @@ let initialState = {
     timestamp: new Date(),
     messages: [],
     status: null,
+    users: [],
+    isFetching: false
 }
 const chatReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'SN/chat/MESSAGES_RECEVIED':
             return {
                 ...state,
-                messages: [...state.messages, ...action.payload.messages.map( m => ({...m, id: v1() }))]
+                messages: [...state.messages, ...action.payload.messages.map(m => ({ ...m, id: v1() }))]
                     .filter((m, index, array) => index >= array.length - 100)
             }
         case 'SN/chat/STATUS_CHANGED':
@@ -24,6 +34,30 @@ const chatReducer = (state = initialState, action) => {
                 ...state,
                 status: action.payload.status
             }
+        case SET_USERS: {
+            return { ...state, users: action.users }
+        }
+        case TOGGLE_IS_FETCHING: {
+            return { ...state, isFetching: action.isFetching }
+        }
+        case TOGGLE_IS_FOLLOWING_PROGRESS: {
+            return {
+                ...state,
+                followingInProgress: action.isFetching
+                    ? [...state.followingInProgress, action.userId]
+                    : state.followingInProgress.filter(id => id != action.userId)
+            }
+        }
+        case SET_RECIPIENTID: {
+            return {
+                ...state, recipientId: action.recipientId
+            }
+        }
+        case SET_MESSAGES: {
+            return {
+                ...state, messages: action.messages
+            }
+        }
         default:
             return state
     }
@@ -31,12 +65,19 @@ const chatReducer = (state = initialState, action) => {
 
 export const actions = {
     messagesReceived: (messages, senderId) => ({
-        type: 'SN/chat/MESSAGES_RECEVIED', payload: {messages, senderId}
-    } ),
+        type: 'SN/chat/MESSAGES_RECEVIED', payload: { messages, senderId }
+    }),
     statusChanged: (status) => ({
-        type: 'SN/chat/STATUS_CHANGED', payload: {status}
-    } )
+        type: 'SN/chat/STATUS_CHANGED', payload: { status }
+    })
 }
+
+export const setUsers = (users) => ({ type: SET_USERS, users })
+export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
+export const toggleFollowingProgress = (isFetching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId })
+export const setRecipientId = (recipientId) => ({type: SET_RECIPIENTID, recipientId})
+export const setMessages = (messages) => ({type: SET_MESSAGES, messages})
+
 
 let _newMessageHandler = null
 const newMessageHandlerCreator = (dispatch) => {
@@ -70,9 +111,33 @@ export const stopMessagesListening = () => async (dispatch) => {
     chatAPI.stop()
 }
 
-export const sendMessage = (message ) => async (dispatch) => {
+export const sendMessage = (message) => async (dispatch) => {
     chatAPI.sendMessage(message, initialState.senderId)
 }
+
+export const getUsers = (currentPage, pageSize) => {
+    console.log('getusers')
+    return (dispatch) => {
+        console.log('then')
+        dispatch(toggleIsFetching(true))
+        usersAPI.getUsers(currentPage, pageSize)
+            .then(data => {                
+                dispatch(toggleIsFetching(false))
+                dispatch(setUsers(data.users))
+            })
+    }
+}
+
+export const findChatMessages = (senderId, recipientId) => {
+    return (dispatch) => {
+        chatAPI.findChatMessages(senderId, recipientId)
+            .then(data => {                
+                dispatch(setMessages(data.messages))
+            })
+    }
+}
+
+
 
 
 export default chatReducer
