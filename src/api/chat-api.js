@@ -1,5 +1,10 @@
 import axios from "axios"
+import { setMessage, findChatMessage } from "../redux/chat-reducer"
+import { useSelector } from 'react-redux'
+// import store from "../redux/redux-store"
 
+
+//const state = store.getState()
 
 let instance = axios.create({
     withCredentials: true,
@@ -58,10 +63,11 @@ function createChannel() {
   stompClient.connect({}, onConnected, onError);
 }
 
-const onConnected = () => {
+const onConnected = () => { 
+  const senderId = state.auth.userId
   console.log("connected");
   stompClient.subscribe(
-    "/user/" + 1 + "/queue/messages",
+    "/user/" + senderId + "/queue/messages",
     onMessageReceived
   );
 };
@@ -70,21 +76,20 @@ const onError = (err) => {
   console.log(err);
 };
 
-const onMessageReceived = (msg) => {
-  // const notification = JSON.parse(msg.body);
-  // const active = JSON.parse(sessionStorage.getItem("recoil-persist"))
-  //   .chatActiveContact;
+const onMessageReceived = (notificationRequest) => {
+  const recipientId = state.chat.recipientId
+  const notification = JSON.parse(notificationRequest.body);
 
-  // if (active.id === notification.senderId) {
-  //   findChatMessage(notification.id).then((message) => {
-  //     const newMessages = JSON.parse(sessionStorage.getItem("recoil-persist"))
-  //       .chatMessages;
-  //     newMessages.push(message);
-  //     setMessages(newMessages);
-  //   });
-  // } else {
-  //   message.info("Received a new message from " + notification.senderName);
-  // }
+
+  if (recipientId === notification.senderId) {
+    
+    findChatMessage(notification.id).then((message) => {
+      debugger
+      setMessage(message);
+    });
+  } else {
+    // message.info("Received a new message from " + notification.senderName);
+  }
   // loadContacts();
 };
 
@@ -114,12 +119,15 @@ export const chatAPI = {
   findChatMessages(senderId, recipientId) {
     return instance.get('messages/' + senderId + '/' + recipientId ) 
   },
+  findChatMessage(id) {
+    return instance.get('messages/' + id) 
+  },
 
-  sendMessage(msg, senderId) {
+  sendMessage(msg, senderId, recipientId) {
     if (msg.trim() !== "") {
       const message = {
         senderId: senderId,
-        recipientId: 2,
+        recipientId: recipientId,
         senderName: "qwe",
         recipientName: "sdfgs",
         content: msg,

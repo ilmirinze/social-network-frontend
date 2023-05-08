@@ -19,6 +19,7 @@ const Chat = (props) => {
 
     const status = useSelector((state) => state.chat.status)
 
+
     useEffect(() => {
         dispatch(startMessagesListening())
         return () => {
@@ -75,7 +76,7 @@ const Messages = ({ }) => {
 const Message = React.memo(({ message }) => {
     console.log(">>>>>>Message")
     return <div className={s.dialogs}>
-        {message.message}
+        {message.content}
         <div >
             <img src={message.photo} style={{ width: '30px' }} /> <b>{message.userName}</b>
         </div>
@@ -84,6 +85,9 @@ const Message = React.memo(({ message }) => {
 
 
 const AddMessageForm = (state) => {
+
+    const senderId = useSelector((store) => store.auth.userId)
+    const recipientId = useSelector((store) => store.chat.recipientId)
     const [message, setMessage] = useState('')
     const dispatch = useDispatch()
     const status = useSelector((state) => state.chat.status)
@@ -91,7 +95,7 @@ const AddMessageForm = (state) => {
         if (!message) {
             return
         }
-        dispatch(sendMessage(message))
+        dispatch(sendMessage(message, senderId, recipientId))
         setMessage('')
     }
 

@@ -8,10 +8,10 @@ const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE-IS-FOLLOWING-PROGRESS'
 const SET_RECIPIENTID = 'SET-RECIPIENTID'
 const SET_MESSAGES = 'SET-MESSAGES'
+const SET_MESSAGE = 'SET-MESSAGE'
 
 
 let initialState = {
-    senderId: window.localStorage.getItem("userId"),
     recipientId: null,
     senderName: '',
     content: null,
@@ -58,6 +58,12 @@ const chatReducer = (state = initialState, action) => {
                 ...state, messages: action.messages
             }
         }
+        case SET_MESSAGE: {
+            return {
+                ...state,
+                messages: [...state.messages, action.message]
+            }
+        }
         default:
             return state
     }
@@ -77,7 +83,7 @@ export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isF
 export const toggleFollowingProgress = (isFetching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId })
 export const setRecipientId = (recipientId) => ({type: SET_RECIPIENTID, recipientId})
 export const setMessages = (messages) => ({type: SET_MESSAGES, messages})
-
+export const setMessage = (message) => ({type: SET_MESSAGE, message})
 
 let _newMessageHandler = null
 const newMessageHandlerCreator = (dispatch) => {
@@ -111,8 +117,8 @@ export const stopMessagesListening = () => async (dispatch) => {
     chatAPI.stop()
 }
 
-export const sendMessage = (message) => async (dispatch) => {
-    chatAPI.sendMessage(message, initialState.senderId)
+export const sendMessage = (message, senderId, recipientId) => async (dispatch) => {
+    chatAPI.sendMessage(message, senderId, recipientId)
 }
 
 export const getUsers = (currentPage, pageSize) => {
@@ -132,7 +138,16 @@ export const findChatMessages = (senderId, recipientId) => {
     return (dispatch) => {
         chatAPI.findChatMessages(senderId, recipientId)
             .then(data => {                
-                dispatch(setMessages(data.messages))
+                dispatch(setMessages(data.data))
+            })
+    }
+}
+
+export const findChatMessage = (id) => {
+    return (dispatch) => {
+        chatAPI.findChatMessage(id)
+            .then(data => {                
+                dispatch(setMessage(data.data))
             })
     }
 }

@@ -6,9 +6,10 @@ import authReducer from "./auth-reducer";
 import thunkMiddleware from "redux-thunk"
 import {reducer as formReducer} from 'redux-form'
 import {signUpReducer} from "./sign-up-reducer";
-import chatReducer from "./chat-reducer";
 import tableReducer from "./table-reducer";
 import todolistReducer from "./todolist-reducer";
+import chatReducer from "./chat-reducer";
+
 
 let reducers = combineReducers({
     profilePage: profileReducer,
@@ -23,6 +24,7 @@ let reducers = combineReducers({
 });
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));
+
 window.store = store;
 
 export default store;
