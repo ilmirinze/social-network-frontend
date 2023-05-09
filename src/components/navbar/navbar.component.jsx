@@ -33,11 +33,11 @@ const Navbar = (props) => {
 			link: "/users"
 
 		},
-		{
-			text: "teachers",
-			icon: "",
-			link: "/users"
-		},
+		// {
+		// 	text: "teachers",
+		// 	icon: "",
+		// 	link: "/users"
+		// },
 		{
 			text: "Settings",
 			icon: "",
