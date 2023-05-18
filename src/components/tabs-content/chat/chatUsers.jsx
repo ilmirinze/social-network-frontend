@@ -38,7 +38,6 @@ const ChatUsers = () => {
             users.map((u, u_index) => {
                 return Number(myId) !== u.id &&
                     <div key={u.id}>
-                        {console.log(myId, u.id)}
                         <span >
                             <div onClick={() => onUserClick(u.id, u_index)} className={isActive[u_index] ? classNames(s.active) : s.dialogsItems}>
                                 <div className={s.user}>

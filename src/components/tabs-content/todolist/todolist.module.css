@@ -112,3 +112,7 @@
   .addBtn:hover {
     background-color: #bbb;
   }
+
+  .done {
+    background-color: green
+  }

@@ -1,4 +1,5 @@
 import axios from "axios"
+import { deleteTask } from "../redux/todolist-reducer"
 
 
 let instance = axios.create({
@@ -11,11 +12,20 @@ let instance = axios.create({
 
 
 export const todolistAPI = {
-    addTask(userId, text) {
+    addTask( text) {
         return instance.post(`todolist/task`, { text })
     },
-    getTasks(userId, currentPage = 1, pageSize = 10 ) {
+    getTasks(currentPage = 1, pageSize = 10 ) {
         return instance.get(`todolist?page=${currentPage}&count=${pageSize}`,)
             .then(response => response.data)
+    },
+    dropTask(id){
+        return instance.delete(`todolist/task?${id}`)
+    },
+    changeDone(id, done){
+        return instance.post(`todolist/task/${id}`, { done })
+    },
+    deleteTask(id){
+        return instance.delete(`todolist/task/${id}`)
     }
 }
