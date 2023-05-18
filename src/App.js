@@ -9,31 +9,30 @@ import SignUpContainer from "./components/authentication/sign-up/sign-up.contain
 import ChatPage from './components/tabs-content/chat/chat';
 import Todolist from './components/tabs-content/todolist/todolist';
 import Table from './components/tabs-content/table/table';
-
-const SOCKET_URL = 'http://localhost:8080/ws-chat/';
-
-
-let onConnected = () => {
-  console.log("Connected!!")
-}
+import { useEffect } from "react";
+import { useDispatch } from 'react-redux'
+import { getAuthUserData } from './redux/auth-reducer';
 
 
 const App = (props) => {
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getAuthUserData())
+  }, [])
+
   return (
     <BrowserRouter>
-
-
       <div className='app-wrapper'>
         <NavbarContainer />
         <div className={'app-wrapper-content'}>
           <Routes>
-
             <Route path="/signUp" element={<SignUpContainer />} />
             <Route path='/login' element={<Login />} />
             <Route path="/chat" element={<ChatPage />} />
             <Route path="/todolist" element={<Todolist />} />
             <Route path="/table" element={<Table />} />
-            <Route path="/profile" element={<ProfileContainer />}>            
+            <Route path="/profile" element={<ProfileContainer />}>
               <Route path=":userId" element={<ProfileContainer />} />
             </Route>
             <Route path='/users' element={<UsersContainer />} />
