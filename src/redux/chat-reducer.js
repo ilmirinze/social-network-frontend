@@ -19,7 +19,8 @@ let initialState = {
     messages: [],
     status: null,
     users: [],
-    isFetching: false
+    isFetching: false,
+    isactive: false
 }
 const chatReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -105,8 +106,8 @@ const statusChangedHandlerCreator = (dispatch) => {
     return _statusChangedHandler
 }
 
-export const startMessagesListening = () => async (dispatch) => {
-    chatAPI.start()
+export const startMessagesListening = () => async (dispatch, getState) => {
+    chatAPI.start(dispatch, getState)
     chatAPI.subscribe('messages-received', newMessageHandlerCreator(dispatch))
     chatAPI.subscribe('status-changed', statusChangedHandlerCreator(dispatch))
 
@@ -144,9 +145,12 @@ export const findChatMessages = (senderId, recipientId) => {
 }
 
 export const findChatMessage = (id) => {
+    
     return (dispatch) => {
+        debugger  
         chatAPI.findChatMessage(id)
-            .then(data => {                
+            .then(data => { 
+                  
                 dispatch(setMessage(data.data))
             })
     }

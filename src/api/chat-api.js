@@ -21,9 +21,12 @@ const subcribers = {
   'messages-received': [],
   'status-changed': []
 }
+
 var sock
 var SockJS = require("sockjs-client");
 var stompClient = null;
+var getState 
+var dispatch
 
 
 const closeHandler = () => {
@@ -52,12 +55,14 @@ const notifySubscribersAboutStatus = (status) => {
 }
 
 
-function createChannel() {
+
+function createChannel(dispatchFunction, getStateFunction) {
   cleanUp()
   //stompClient?.close()
 
   notifySubscribersAboutStatus('pending')
-
+  getState = getStateFunction
+  dispatch = dispatchFunction
   const Stomp = require("stompjs");
   var SockJS = require("sockjs-client");
   SockJS = new SockJS("http://localhost:8888/ws");
@@ -66,7 +71,7 @@ function createChannel() {
 }
 
 const onConnected = () => {
-  const senderId = state.auth.userId
+  const senderId = getState().auth.userId
   console.log("connected");
   stompClient.subscribe(
     "/user/" + senderId + "/queue/messages",
@@ -79,16 +84,13 @@ const onError = (err) => {
 };
 
 const onMessageReceived = (notificationRequest) => {
-  const recipientId = state.chat.recipientId
+  
+  const recipientId = getState().chat.recipientId
   const notification = JSON.parse(notificationRequest.body);
 
-
-  if (recipientId === notification.senderId) {
-
-    findChatMessage(notification.id).then((message) => {
-      debugger
-      setMessage(message);
-    });
+  
+  if (recipientId === notification.senderId) {  
+    findChatMessage(notification.id)(dispatch)
   } else {
     // message.info("Received a new message from " + notification.senderName);
   }
@@ -97,8 +99,11 @@ const onMessageReceived = (notificationRequest) => {
 
 
 export const chatAPI = {
-  start() {
-    createChannel()
+  
+  start(dispatch, getState) {
+    
+    createChannel(dispatch, getState)
+
   },
   stop() {
     subcribers['messages-received'] = []

@@ -1,8 +1,8 @@
 :root {
-	--primary: #0091ff;
-	--dark: #061b28;
+	--primary: orange;
+	--dark: rgb(185, 185, 185);
 	--gray: #756388;
-	--light: #ffffff;
+	--light: black;
 }
 
 

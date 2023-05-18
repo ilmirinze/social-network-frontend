@@ -1,27 +1,23 @@
 import { todolistAPI } from "../api/todolist-api"
-const SET_TABLE = 'SET-TABLE'
+const SET_TASKS = 'SET-TASKS'
 const ADD_TASK = 'ADD-TASK'
 
 
 let initialState = {
-    text: "",
-    tasks: []
+    tasks: [],
 }
 
 export const todolistReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_TABLE: {
+        case SET_TASKS: {
             return {
-                ...state, tasks: action.text
+                ...state, tasks: action.tasks
             }
         }
         case ADD_TASK: {
-            let newTask = {
-                text: action.newText,
-            };
             return {
                 ...state,
-                tasks: [...state.tasks, newTask],
+                tasks: [...state.tasks, action.newTask],
             }
         }
         default:
@@ -30,26 +26,28 @@ export const todolistReducer = (state = initialState, action) => {
 
 
 }
-export const setTasks = (text) => ({ type: SET_TABLE, text })
-export const addTasks = (userId, newText) => ({ type: ADD_TASK, userId, newText })
+export const setTasks = (tasks) => ({ type: SET_TASKS, tasks })
+export const addTasks = (newText) => ({ type: ADD_TASK, newText })
 
 
 export const getTodolist = (userId) => {
     return (dispatch) => {
         todolistAPI.getTasks(userId)
             .then(data => {
-                dispatch(setTasks(data.posts))
+                dispatch(setTasks(data.tasks))
             })
     }
 }
 
 export const addNewTask = (userId, NewText) => (dispatch) => {
+    debugger
     todolistAPI.addTask(userId, NewText)
         .then(response => {
             if (response.data.resultCode === 0) {
-                dispatch(addTasks(userId, NewText))
+                dispatch(addTasks(NewText))
             }
         })
+
 }
 
 export default todolistReducer

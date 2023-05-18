@@ -12,10 +12,10 @@ let instance = axios.create({
 
 export const todolistAPI = {
     addTask(userId, text) {
-        return instance.post('todolist/' + userId + '/post', { text })
+        return instance.post(`todolist/task`, { text })
     },
-    getTasks(userId) {
-        return instance.get(`todolist/${userId}`,)
+    getTasks(userId, currentPage = 1, pageSize = 10 ) {
+        return instance.get(`todolist?page=${currentPage}&count=${pageSize}`,)
             .then(response => response.data)
     }
 }

@@ -3,6 +3,9 @@ import s from "./navbar.module.css";
 import { NavLink } from 'react-router-dom';
 import classNames from "classnames";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+
 const Navbar = (props) => {
 	const [isExpanded, setExpendState] = useState(false);
 	const menuItems = [
@@ -43,9 +46,11 @@ const Navbar = (props) => {
 			icon: "",
 			link: "/users"
 		},
+		
 
 
 	];
+	console.log(props.userName)
 	return (
 		<div className={s.navbar}>
 			<div
@@ -60,7 +65,7 @@ const Navbar = (props) => {
 						{isExpanded && (
 							<div className={s.navBrand}>
 								<img src="icons/Logo.svg" alt="" srcSet="" />
-								<h2>Showkart</h2>
+								<h2>Menu</h2>
 							</div>
 						)}
 						<button
@@ -100,7 +105,7 @@ const Navbar = (props) => {
 							</div>
 						</div>
 					)}
-					<button className={s.btn}><img className={s.logoutIcon} src="icons/logout.svg" alt="" srcSet=""  onClick={props.logout} /></button>
+					<button className={s.logoutIcon} ><FontAwesomeIcon style={{fontSize:'2rem'}} icon={faArrowRightFromBracket} /></button>
 				</div>
 			</div>
 		</div>

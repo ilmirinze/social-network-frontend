@@ -5,6 +5,7 @@ import s from './chat.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import ChatUsers from './chatUsers'
+import classNames from 'classnames'
 
 
 const ChatPage = () => {
@@ -14,8 +15,9 @@ const ChatPage = () => {
 }
 
 const Chat = (props) => {
-    
+
     const dispatch = useDispatch()
+
 
     const status = useSelector((state) => state.chat.status)
 
@@ -27,20 +29,20 @@ const Chat = (props) => {
         }
     }, [])
 
-    
+
 
     return <div className={s.dialogs}>
         {status === 'error' && <div>Some error occured. Please refresh the page</div>}
         <div className={s.mainContent}>
             <div className={s.messagesSection}>
                 <div className={s.massages}>
-                    <Messages />                    
+                    <Messages />
                 </div>
             </div>
             <AddMessageForm />
         </div>
         <div className={s.addedContent}>
-          <ChatUsers />
+            <ChatUsers />
         </div>
 
     </div>
@@ -60,6 +62,8 @@ const Messages = ({ }) => {
         }
     }
 
+  
+
     useEffect(() => {
         if (isAutoScroll) {
             messagesAnchorRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -74,9 +78,14 @@ const Messages = ({ }) => {
 
 
 const Message = React.memo(({ message }) => {
+
+    let senderId = useSelector((state) => state.auth.userId)
     console.log(">>>>>>Message")
+    
     return <div className={s.dialogs}>
-        {message.content}
+        <div className={senderId == message.senderId ? classNames(s.mymessageContainer, s.mymessage) : classNames(s.alienmessageContainer, s.alienmessage)} >
+            {message.content}
+        </div>
         <div >
             <img src={message.photo} style={{ width: '30px' }} /> <b>{message.userName}</b>
         </div>
@@ -100,14 +109,14 @@ const AddMessageForm = (state) => {
     }
 
 
-    
 
-    return  <div className={s.sendMessage}>
-            <input className={s.input} onChange={(e) => setMessage(e.currentTarget.value)} value={message}></input>
+
+    return <div className={s.sendMessage}>
+        <input className={s.input} onChange={(e) => setMessage(e.currentTarget.value)} value={message}></input>
         <div>
             <button className={s.btn} onClick={sendMessageHandler}><FontAwesomeIcon className={s.icon} icon={faPaperPlane} /></button>
         </div>
-        </div>
+    </div>
 }
 
 export default ChatPage

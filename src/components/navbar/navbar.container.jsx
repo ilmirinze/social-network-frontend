@@ -10,7 +10,7 @@ class NavbarContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => ({
-    
+    userName: state.auth.username
   })
   
   export default (

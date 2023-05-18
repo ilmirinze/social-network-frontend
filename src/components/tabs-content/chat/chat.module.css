@@ -53,11 +53,9 @@
     /* Just a little styling to make it pretty */
     border: 1px solid;
     color: rgb(0, 0, 0);
-    border: none;
-    border-radius: 50%;
+    border: none;   
     width: 100px;
     height: 50px;
-    background-color: rgba(0, 255, 255, 0.409);
 }
 
 .btn hover {
@@ -69,24 +67,39 @@
 }
 
 .addedContent {
-    width: 500px;
     height: 100vh;
     margin-left: 2rem;
+}
 
+.addedContent > div {
+    width:25rem;
+}
+
+.addedContent > div > div {
+    width:100%;
 }
 
 .user {
     display: flex;
     width: 7rem;
-    margin-bottom: 1rem;
+    align-items: center;
+    width: fit-content;
+    border-radius: 10%;
+    
 }
+
 
 .dialogsItems {
     padding: 10px;
     text-decoration: none;
-
+    
+    cursor: pointer;
 }
 
+.dialogsItems:hover {
+    background-color: rgb(199, 199, 199);
+
+}
 
 .item {
     color: rgb(0, 0, 0);
@@ -96,8 +109,11 @@
 }
 
 .active {
-    color: green;
+    padding: 10px;
+    border: solid 2px orange ;
     text-decoration: none;
+    cursor: pointer;
+    background-color: rgb(218, 218, 218);
 }
 
 .image {
