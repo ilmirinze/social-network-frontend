@@ -3,7 +3,7 @@ import './App.css';
 import NavbarContainer from './components/navbar/navbar.container';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import UsersContainer from './components/tabs-content/users/users.container';
-import ProfileContainer from './components/tabs-content/profile/profile.container';
+import ProfileComponent from './components/tabs-content/profile/profilePage';
 import Login from './components/authentication/sign-in/sign-in.component';
 import SignUpContainer from "./components/authentication/sign-up/sign-up.container";
 import ChatPage from './components/tabs-content/chat/chat';
@@ -32,8 +32,8 @@ const App = (props) => {
             <Route path="/chat" element={<ChatPage />} />
             <Route path="/todolist" element={<Todolist />} />
             <Route path="/table" element={<Table />} />
-            <Route path="/profile" element={<ProfileContainer />}>
-              <Route path=":userId" element={<ProfileContainer />} />
+            <Route path="/profile" element={<ProfileComponent />}>
+              <Route path=":userId" element={<ProfileComponent />} />
             </Route>
             <Route path='/users' element={<UsersContainer />} />
           </Routes>

@@ -11,16 +11,19 @@ const ProfileInfoComponent = (props) => {
   return (
     <div className={s.mainContent}>
       <div className={s.descriptionBlock}>
-        <img className={s.img} src={ "https://oir.mobi/uploads/posts/2022-08/1661385261_40-oir-mobi-p-standartnii-fon-vatsap-instagram-56.png"}></img>
-        <div className={s.info}>
-        <h2 className={s.name}>{props.profile.firstName} {props.profile.lastName}</h2>
-        <div className={s.text}><strong>Дата рождения:</strong> {props.profile.birthday}</div>
-        <div className={s.text}><strong>Университет:</strong> {props.profile.institution}</div>
-        <div className={s.text} ><strong>Факультет:</strong> {props.profile.faculty}</div>
-        <div className={s.text}><strong>группа:</strong> {props.profile.group}</div>
-        <div className={s.text}><strong>курс:</strong> {props.profile.course}</div>
+        <div>
+          <img className={s.img} src={"https://oir.mobi/uploads/posts/2022-08/1661385261_40-oir-mobi-p-standartnii-fon-vatsap-instagram-56.png"}></img>
+          <></>
         </div>
-        <ProfileStatusWithHooksComponent status={props.status} updateStatus={props.updateStatus}/>
+        <div className={s.info}>
+          <h2 className={s.name}>{props.profile.firstName} {props.profile.lastName}</h2>
+          <div className={s.text}><strong>Дата рождения:</strong> {props.profile.birthday}</div>
+          <div className={s.text}><strong>Университет:</strong> {props.profile.institution}</div>
+          <div className={s.text} ><strong>Факультет:</strong> {props.profile.faculty}</div>
+          <div className={s.text}><strong>группа:</strong> {props.profile.group}</div>
+          <div className={s.text}><strong>курс:</strong> {props.profile.course}</div>
+        </div>
+        {/* <ProfileStatusWithHooksComponent status={props.status} updateStatus={props.updateStatus} /> */}
       </div>
     </div>
   )

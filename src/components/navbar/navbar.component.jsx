@@ -21,11 +21,6 @@ const Navbar = (props) => {
 			link: "/chat"
 		},
 		{
-			text: "table",
-			icon: "",
-			link: "/table"
-		},
-		{
 			text: "todolist",
 			icon: "",
 			link: "/todolist"
@@ -105,7 +100,7 @@ const Navbar = (props) => {
 							</div>
 						</div>
 					)}
-					<button className={s.logoutIcon} ><FontAwesomeIcon style={{fontSize:'2rem'}} icon={faArrowRightFromBracket} /></button>
+					<button onClick={props.logout} className={s.logoutIcon} ><FontAwesomeIcon style={{fontSize:'2rem'}} icon={faArrowRightFromBracket} /></button>
 				</div>
 			</div>
 		</div>

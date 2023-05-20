@@ -5,7 +5,7 @@ import { logout } from '../../redux/auth-reducer';
 
 class NavbarContainer extends React.Component {
     render () {
-        return <Navbar   {...this.props} username={this.props.username} role={this.props.role}/> 
+        return <Navbar   {...this.props} username={this.props.username} role={this.props.role} logout={this.props.logout}/> 
     }
 }
 

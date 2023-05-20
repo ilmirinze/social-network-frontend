@@ -2,7 +2,10 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import { addNewTask, getTodolist, changeDoneDispatch, deleteTaskDispatch } from '../../../redux/todolist-reducer'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt } from '@fortawesome/free-regular-svg-icons'
 import s from './todolist.module.css'
+import dayjs from 'dayjs'
 
 const Todolist = () => {
     const tasks = useSelector(store => store.todolist.tasks)
@@ -34,12 +37,13 @@ const Todolist = () => {
             <span onClick={newTask} className={s.addBtn}>Add</span>
         </div>
         {tasks.map((t) => {
-            return(
-            <div onClick={() => changeDone(t.id, !t.done)} >
-                <ul id={s.myUL}>
-                    <li className={t.done && s.done}>{t.description} {t.timestamp} {t.done ? 'done' : 'not done'} </li> <div onClick={() => deleteTask(t.id)}>delete</div>
-                </ul>
-            </div>)
+            return (
+                <div onClick={() => changeDone(t.id, !t.done)} >
+                    <ul id={s.myUL}>
+                        <li className={s.task}> <span className={t.done && s.done}>{t.description}</span>  <div className={s.rightDiv}><div className={s.taskDate}> <span>{dayjs(t.timestamp).format('MMM D, YYYY h:mm A')}</span> </div><div className={s.taskDelete} onClick={() => deleteTask(t.id)}> —
+                        </div></div></li>
+                    </ul>
+                </div>)
         })}
 
     </div>

@@ -147,7 +147,6 @@ export const findChatMessages = (senderId, recipientId) => {
 export const findChatMessage = (id) => {
     
     return (dispatch) => {
-        debugger  
         chatAPI.findChatMessage(id)
             .then(data => { 
                   

@@ -11,6 +11,7 @@ let instance = axios.create({
 
 
 export const profileAPI = {
+    
     getProfile(userId) {
         return instance.get(`profile/` + userId)
     },
